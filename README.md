@@ -17,7 +17,7 @@ chsh -s $(which fish)
 ### リポジトリのclone
 sshの設定はまだの前提なので、httpでcloneする。
 ```
-git clone https://github.com/dr666m1/setting.git
+git clone https://github.com/dr666m1/setting.git ~/.setting
 ```
 後でsshを利用したくなったら以下のようにする。
 

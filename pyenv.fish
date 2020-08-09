@@ -1,4 +1,6 @@
-#===== pyenv =====
+#!/usr/bin/env fish
+cd (dirname (status filename))
+
 sudo apt -y install \
     make build-essential zlib1g-dev libbz2-dev \
     libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
@@ -9,3 +11,14 @@ sudo apt -y install \
 curl https://pyenv.run | bash
 set -U fish_user_paths $HOME/.pyenv/bin $fish_user_paths
 
+echo '
+done!!!
+
+SUGGESTION... you have to install and determin python version like below.
+
+```
+set -l ver "3.7.0"
+pyenv install $ver
+pyenv global $ver
+```
+'

@@ -4,16 +4,16 @@ if &compatible
 endif
 
 " Required:
-set runtimepath+=$HOME/.nvim/dein/repos/github.com/Shougo/dein.vim
+set runtimepath+=$HOME/.dein/repos/github.com/Shougo/dein.vim
 
 " Required:
-if dein#load_state("$HOME/.nvim/dein")
-  call dein#begin("$HOME/.nvim/dein")
+if dein#load_state("$HOME/.dein")
+  call dein#begin("$HOME/.dein")
 
   " read toml files
   " when you first use toml, dein#recache_runtimepath() may be needed
-  call dein#load_toml("$HOME/.nvim/nvim/toml/dein.toml", {'lazy': 0})
-  call dein#load_toml("$HOME/.nvim/nvim/toml/dein_lazy.toml", {'lazy': 1})
+  call dein#load_toml("$HOME/.config/nvim/toml/dein.toml", {'lazy': 0})
+  call dein#load_toml("$HOME/.config/nvim/toml/dein_lazy.toml", {'lazy': 1})
 
   " Required: 
   call dein#end()

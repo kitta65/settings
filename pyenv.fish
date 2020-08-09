@@ -11,8 +11,10 @@ sudo apt -y install \
 curl https://pyenv.run | bash
 set -U fish_user_paths $HOME/.pyenv/bin $fish_user_paths
 
-echo 'done!!! next, you have to install and determin python version.
-below is an example.
+echo '
+done!!!
+
+SUGGESTION... you have to install and determin python version like below.
 
 ```
 set -l ver "3.7.0"

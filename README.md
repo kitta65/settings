@@ -26,6 +26,7 @@ git remote set-url origin git@github.com:dr666m1/setting.git
 ```
 
 ## init.fish
+### 設定事項
 - curl, zip, exaなど基本的なコマンド群のインストール
 - 自作ツールの設定（watcherなど）
 - mecabのインストール
@@ -37,12 +38,26 @@ git remote set-url origin git@github.com:dr666m1/setting.git
 - claspのインストール（利用前に[APIの有効化](https://script.google.com/home/usersettings)が必要）
 
 ## gcp.fish
+### 備考
 サ―ビスアカウントを作成し、jsonファイルを任意の場所に保存すると各種権限を付与できる。以下のようにパスを指定すること。
 ```
 set -Ux GOOGLE_APPLICATION_CREDENTIALS $HOME/.gcp/xxxxxx.json
 ```
 
+## pyenv.fish
+### 備考
+実行後以下のように、任意のバージョンのインストールと設定を行う。
+
+```
+set -l ver "3.7.0"
+pyenv install $ver
+pyenv global $ver
+```
+
 ## nvim.fish
+### 準備
+事前に `pyenv.fish` を実行しておく必要がある。
+
+### 備考
 初回はnvim内で`:call dein#install()`（と、もしかしたら`:UpdateRemotePlugins`）を実行する必要がある。
 
-## pyenv.fish

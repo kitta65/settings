@@ -3,6 +3,7 @@ cd (dirname (status filename))
 which pyenv
 if test $status -ne 0
     echo 'installation error `pyenv`'
+    exit
 end
 
 #===== nvim =====

@@ -1,8 +1,13 @@
 #!/usr/bin/env fish
 cd (dirname (status filename))
+set -U setting_path (pwd)
 sudo apt update
 sudo apt -y install curl git vim bat zip unzip
 mkdir -p ~/.tmp
+
+#==== fish =====
+ln -s $setting_path/dotfiles/fish/functions ~/.config/fish/functions
+ln -s $setting_path/dotfiles/fish/config.fish ~/.config/fish/config.fish
 
 #===== wsl =====
 read -p 'echo -e "input your user name of windows\n: "' winuser
@@ -25,9 +30,9 @@ git config --global core.editor vim
 git config --global color.ui auto
 
 #===== exa =====
-set -U fish_user_paths $HOME/.exa $fish_user_paths
-mkdir -p ~/.exa
 curl -L https://github.com/ogham/exa/releases/download/v0.9.0/exa-linux-x86_64-0.9.0.zip > ~/.tmp/exa-linux-x86_64-0.9.0.zip
 unzip ~/.tmp/exa-linux-x86_64-0.9.0.zip
-mv ./exa-linux-x86_64 ~/.exa/exa
+mv ./exa-linux-x86_64 usr/local/bin/exa
 set -Ux EXA_COLORS "da=1;35"
+
+

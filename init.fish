@@ -3,7 +3,7 @@ cd (dirname (status filename))
 set -U setting_path (pwd)
 sudo apt update
 sudo apt -y install \
-    curl git vim bat zip unzip neovim \
+    curl git vim bat zip unzip \
     mecab libmecab-dev mecab-ipadic-utf8
 mkdir -p ~/.tmp
 

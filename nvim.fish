@@ -1,3 +1,5 @@
+#!/usr/bin/env fish
+cd (dirname (status filename))
 if test which pyenv -ne 0
     echo 'installation error `pyenv`'
 end

@@ -18,6 +18,7 @@ chsh -s $(which fish)
 sshの設定はまだの前提なので、httpでcloneする。
 ```
 git clone https://github.com/dr666m1/setting.git ~/.setting
+chmod +x ~/.setting/*
 ```
 後でsshを利用したくなったら以下のようにする。
 

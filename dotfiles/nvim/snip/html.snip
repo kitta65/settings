@@ -1,0 +1,52 @@
+snippet init
+	<!DOCTYPE html>
+	<html>
+		<head>
+			<title>${1:myApplication}</title>
+			<meta charset="utf-8">
+		</head>
+		<body>
+			<div id="app"></div>
+			<!-- https://reactjs.org/docs/cdn-links.html -->
+			<script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+			<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+			<!-- https://babeljs.io/docs/en/babel-standalone -->
+			<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+			<script type="text/babel">
+				${0}
+			</script>
+		</body>
+	</html>
+snippet <<
+	<${1:<<tag>>}${2}>
+		${0}
+	</$1>
+snippet <
+	<${1:<<tag>>}${2}>${0}</$1>
+snippet r_tag
+	React.createElement("${1:<<tag>>}", ${2:null}, ${0})
+snippet r_render
+	ReactDOM.render(
+		${0},
+		document.getElementById(${1})
+	);
+snippet //
+	/* ${0} */
+snippet <!
+	<!-- ${0} -->
+snippet r_class
+	React.createClass({
+		displayName: ${1},
+		propTypes: {
+			${0}
+		},
+		getDefaultProps: function() {
+			return {};
+		},
+		render: function() {
+			return ;
+		},
+	});
+snippet r_type
+	React.PropTypes.${1:string}${0:.isRequired}
+

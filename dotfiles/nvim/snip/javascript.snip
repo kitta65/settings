@@ -1,0 +1,13 @@
+snippet gas_request_get
+	const url = "${0}";
+	const reponse = UrlFetchApp.fetch(url);
+snippet gas_request_post
+	const url = "${0}";
+	const data = {};
+	const options = {
+		"method" = "post",
+		"payload" = data
+	}
+	const reponse = UrlFetchApp.fetch(url, options);
+snippet gas_script_property
+	PropertiesService.getScriptProperties().getProperty('${0}')

@@ -1,0 +1,13 @@
+snippet init
+	library("tidyverse")
+	options(scipen=100)
+snippet def_plot_png
+	plot_png = function(...) {
+		png("latest.png", width=1000, height=1000)
+		plot(...)
+		dev.off()
+	}${0}
+snippet >
+	%>% 
+snippet sec
+	#===== ${0} =====

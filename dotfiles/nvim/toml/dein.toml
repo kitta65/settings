@@ -1,0 +1,20 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'tomasr/molokai'
+hook_add = 'colorscheme molokai'
+
+[[plugins]]
+repo = 'kassio/neoterm'
+hook_add = '''
+    let g:neoterm_default_mod='vertical'
+    let g:neoterm_autoscroll=1
+    tnoremap jj <c-\><c-n>
+    nnoremap @c :Tnew<cr>
+    nnoremap rr :TREPLSendLine<cr><down>0
+    vnoremap rr :<c-u>TREPLSendSelection<cr><s-o><esc>:TREPLSendLine<cr>u`>
+    if findfile("pyproject.toml", ".;") != ""
+        let g:neoterm_repl_python = 'poetry run ipython --no-autoindent'
+    endif
+'''

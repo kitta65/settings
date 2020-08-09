@@ -1,0 +1,126 @@
+# common
+snippet class
+	class ${0:<<name>>}():
+		def __init__(self):
+			pass
+snippet yyyy-mm-dd
+	%Y-%m-%d
+snippet yyyymmdd
+	%Y%m%d
+snippet hh:mm:ss
+	%H:%M:%S
+snippet hhmmss
+	%H%M%S
+snippet init
+	#!/usr/bin/env python3
+	import os
+	try:
+		os.chdir(os.path.dirname(__file__))
+	except NameError as e:
+		pass
+	${0}
+	if __name__=="__main__":
+		pass
+snippet write
+	with open(${1:<<file_name>>}, "w", encoding="utf-8") as f:
+		f.write(${0:<<text>>})
+snippet read
+	with open(${1:<<file_name>>}, "r", encoding="utf-8") as f:
+		${2:<<variable>>} = f.readlines()
+		${0}
+
+snippet chap
+	#====================
+	# ${0}
+	#====================
+snippet sec
+	#===== ${0} =====
+# myds
+snippet myds_visualize
+	import myds.visualize
+	myds.visualize.local_server()
+# altair
+snippet alt_point
+	chart = alt.Chart(${0})
+	chart.mark_point().encode(
+		x="",
+		y="",
+	).interactive().save("chart.html")
+snippet alt_point_with_label
+	chart = alt.Chart(${0})
+	chart.mark_point().encode(
+		x="",
+		y="",
+		tooltip=[""]
+	)
+snippet alt_line
+	chart = alt.Chart(${0})
+	chart.mark_line().encode(
+		x="",
+		y="",
+	).interactive().save("chart.html")
+snippet alt_line_with_conf
+	chart = alt.Chart(${0})
+	line = chart.mark_line().encode(
+		x="",
+		y="mean()",
+	)
+	band = chart.mark_errorband(extent="ci").encode(
+		#ci...confidence interval
+		#stderr...standard error
+		#stdev...standard deviation
+		x="",
+		y="",
+	)
+	(line + band).interactive().save("chart.html")
+# pandas
+snippet pd_today
+	pd.Timestamp.today()
+snippet pd_offsets
+	pd.tseries.offset.${0:<<Day>>}()
+snippet pd_to_csv
+	${1:<<DataFrame>>}.to_csv(${0:<<file_name>>}, header=True, index=False)
+snippet pd_read
+	pd.read_csv(${0:<<file_name>>})
+snippet init_bq
+	import pandas  as pd
+	query = """
+	${0}
+	"""
+	df = pd.read_gbq(query, "${1:<<project_id>>}", dialect="standard")
+	# credential is saved as ~/.config/pandas_gbq/bigquery_credentials.dat
+snippet pd_concat()
+	pd.concat(${0:<<array of dataframe>>}, ignore_index=True)
+# lxml
+snippet lxml_html
+	import requests
+	import lxml.html
+	url = "${1:<<url>>}"
+	html = requests.get(url).text
+	root = lxml.html.fromstring(html)
+	components = root.xpath("${0:<<xpath>>}") # //div[@class='main']
+# requests
+snippet requests_get
+	url = "${1:<<url>>}"
+	headers = {}
+	payload = {}
+	res = requests.get(url, headers=headers, params=payload)
+	#res.encoding = "utf-8"
+snippet requests_post
+	url = "${1:<<url>>}"
+	payload = {}
+	headers = {}
+	res = requests.post(url, data=payload, headers=headers)
+	#res.encoding = "utf-8"
+# pyspark
+snippet init_spark
+	from pyspark import SparkConf, SparkContext
+	conf = SparkConf().setMaster("local").setAppName("MyApp")
+	sc = SparkContext(conf = conf)
+	${0}
+# datetime
+snippet datetime_now
+	datetime.datetime.now()${0:.strftime("%Y-%m-%d")}
+snippet datetime_today
+	datetime.date.today()${0:.strftime("%Y-%m-%d")}
+include python_local.snip

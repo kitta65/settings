@@ -1,5 +1,5 @@
 function ll
-    if which exa
+    if which exa > /dev/null
         exa -lha
     else
         ls -lha

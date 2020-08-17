@@ -12,6 +12,7 @@ hook_add = '''
     let g:neoterm_autoscroll=1
     tnoremap jj <c-\><c-n>
     nnoremap @c :Tnew<cr>
+    nnoremap @e :T exit<cr>
     nnoremap rr :TREPLSendLine<cr><down>0
     vnoremap rr :<c-u>TREPLSendSelection<cr><s-o><esc>:TREPLSendLine<cr>u`>
     let s:venv_path = finddir("venv", ".;")

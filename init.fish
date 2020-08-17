@@ -4,7 +4,8 @@ set -U setting_path (pwd)
 sudo apt update
 sudo apt -y install \
     curl git vim zip unzip \
-    mecab libmecab-dev mecab-ipadic-utf8
+    mecab libmecab-dev mecab-ipadic-utf8 \
+    fuse
 mkdir -p ~/.tmp
 
 #==== fish =====

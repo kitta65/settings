@@ -1,0 +1,1 @@
+/home/dr666m1/.local/share/omf/themes/clearance/fish_prompt.fish

@@ -56,6 +56,29 @@ sudo apt purge -y nodejs npm
 sudo npm install -g @google/clasp
 sudo npm install -g inquirer # dependent package
 
+#===== nvim =====
+curl -L https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage > ~/.tmp/nvim.appimage
+chmod u+x ~/.tmp/nvim.appimage
+sudo mv ~/.tmp/nvim.appimage /usr/local/bin/nvim
+ln -s $setting_path/dotfiles/nvim $HOME/.config/nvim
+git config --global core.editor nvim
+
+#===== dein =====
+curl https://raw.githubusercontent.com/shougo/dein.vim/master/bin/installer.sh > ~/.tmp/dein_installer.sh
+sh ~/.tmp/dein_installer.sh ~/.dein
+pip install pynvim # deoplete
+
+#===== pyenv =====
+sudo apt -y install \
+    make build-essential zlib1g-dev libbz2-dev \
+    libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
+    xz-utils tk-dev libffi-dev liblzma-dev python-openssl git libssl-dev
+# https://github.com/pyenv/pyenv/wiki/Common-build-problems
+# if you use ubuntu, you may have to use libssl1.0-dev instead of libssl-dev
+
+curl https://pyenv.run | bash
+set -U fish_user_paths $HOME/.pyenv/bin $fish_user_paths
+
 #===== gcp =====
 sudo apt update
 sudo apt install apt-transport-https ca-certificates gnupg
@@ -68,8 +91,14 @@ echo '
 done!!!
 
 SUGGESTION... you can create service account and specify credential like below.
-
 ```
 set -Ux GOOGLE_APPLICATION_CREDENTIALS $HOME/.gcp/xxxxxx.json
+```
+
+SUGGESTION... you have to install and determin python version like below.
+```
+set -l ver "3.7.0"
+pyenv install $ver
+pyenv global $ver
 ```
 '

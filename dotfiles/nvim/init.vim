@@ -97,6 +97,7 @@ vnoremap q <esc>:MyQuote<space>
 set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
 
 "===== other =====
+nnoremap / /\v
 inoremap jj <esc>
 inoremap ｊｊ <esc>
 set number

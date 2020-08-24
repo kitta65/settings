@@ -44,7 +44,7 @@ sudo mv ./exa-linux-x86_64 /usr/local/bin/exa
 set -Ux EXA_COLORS "da=1;35"
 
 #===== watcher =====
-ln -s $setting_path/dotfiles/.wathcer ~/.watcher
+ln -s $setting_path/dotfiles/.watcher ~/.watcher
 
 #===== nodejs (via n) =====
 sudo apt install -y nodejs npm

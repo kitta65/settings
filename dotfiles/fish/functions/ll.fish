@@ -1,7 +1,7 @@
 function ll
     if which exa > /dev/null
-        exa -lha
+        exa -lha $argv
     else
-        ls -lha
+        ls -lha $argv
     end
 end

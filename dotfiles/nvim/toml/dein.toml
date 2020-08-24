@@ -14,7 +14,7 @@ hook_add = '''
     nnoremap @c :Tnew<cr>
     nnoremap @e :T exit<cr>
     nnoremap rr :TREPLSendLine<cr><down>0
-    vnoremap rr :<c-u>TREPLSendSelection<cr><s-o><esc>:TREPLSendLine<cr>u`>
+    vnoremap rr :<c-u>TREPLSendSelection<cr>:T<space>\<c<space><bs>r><cr>`>
     let s:venv_path = finddir("venv", ".;")
     if s:venv_path != ""
         let g:neoterm_repl_python = 'source ' . s:venv_path . '/bin/activate.fish; and ipython'

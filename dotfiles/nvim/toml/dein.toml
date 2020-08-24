@@ -17,6 +17,6 @@ hook_add = '''
     vnoremap rr :<c-u>TREPLSendSelection<cr>:T<space>\<c<space><bs>r><cr>`>
     let s:venv_path = finddir("venv", ".;")
     if s:venv_path != ""
-        let g:neoterm_repl_python = 'source ' . s:venv_path . '/bin/activate.fish; and ipython'
+        let g:neoterm_repl_python = 'source ' . s:venv_path . '/bin/activate.fish; and ipython --no-autoindent'
     endif
 '''

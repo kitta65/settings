@@ -66,7 +66,7 @@ git config --global core.editor nvim
 #===== dein =====
 curl https://raw.githubusercontent.com/shougo/dein.vim/master/bin/installer.sh > ~/.tmp/dein_installer.sh
 sh ~/.tmp/dein_installer.sh ~/.dein
-pip install pynvim # deoplete
+pip install pynvim # deoplete # maybe later
 
 #===== pyenv =====
 sudo apt -y install \

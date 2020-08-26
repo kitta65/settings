@@ -1,1 +1,1 @@
-setlocal syntax=sql
+source $VIMRUNTIME/syntax/sql.vim

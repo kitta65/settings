@@ -26,8 +26,7 @@ snippet write
 		f.write(${0:<<text>>})
 snippet read
 	with open(${1:<<file_name>>}, "r", encoding="utf-8") as f:
-		${2:<<variable>>} = f.readlines()
-		${0}
+		${2:<<variable>>} = f.readlines()${0}
 
 snippet chap
 	#====================

@@ -1,0 +1,7 @@
+snippet init
+	create temp function start_date() as (date "`strftime("%Y-%m-%d")`");
+	create temp function start_ymd(format string) as (
+		format_date(format, start_date())
+	);${0}
+
+include bq_local.snip

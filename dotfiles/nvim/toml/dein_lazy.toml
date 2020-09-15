@@ -48,10 +48,6 @@ repo = 'previm/previm'
 on_ft = ['markdown']
 
 [[plugins]]
-repo = 'tyru/open-browser.vim'
-on_ft = ['markdown']
-
-[[plugins]]
 repo = 'Yggdroot/indentLine'
 on_ft = ['python', 'stan', 'bq', 'sql', 'r', 'html', 'javascript']
 

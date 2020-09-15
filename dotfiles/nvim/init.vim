@@ -39,7 +39,7 @@ inoremap <c-h> <left>
 inoremap <c-j> <down>
 inoremap <c-k> <up>
 inoremap <c-l> <right>
-"tnoremap <c-h> <left>
+tnoremap <c-h> <left>
 inoremap <c-j> <down>
 tnoremap <c-k> <up>
 tnoremap <c-l> <right>

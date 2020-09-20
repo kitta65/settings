@@ -57,7 +57,7 @@ sudo npm install -g @google/clasp
 sudo npm install -g inquirer # dependent package
 
 #===== nvim =====
-curl -L https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage > ~/.tmp/nvim.appimage
+curl -L https://github.com/neovim/neovim/releases/download/v0.4.4/nvim.appimage > ~/.tmp/nvim.appimage
 chmod u+x ~/.tmp/nvim.appimage
 sudo mv ~/.tmp/nvim.appimage /usr/local/bin/nvim
 ln -s $setting_path/dotfiles/nvim $HOME/.config/nvim

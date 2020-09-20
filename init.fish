@@ -66,7 +66,6 @@ git config --global core.editor nvim
 #===== dein =====
 curl https://raw.githubusercontent.com/shougo/dein.vim/master/bin/installer.sh > ~/.tmp/dein_installer.sh
 sh ~/.tmp/dein_installer.sh ~/.dein
-pip install pynvim # deoplete # maybe later
 
 #===== pyenv =====
 sudo apt -y install \
@@ -87,6 +86,8 @@ curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyr
 sudo apt-get -y update; sudo apt-get -y install google-cloud-sdk
 gcloud init
 
+
+#===== message =====
 echo '
 done!!!
 
@@ -100,5 +101,10 @@ SUGGESTION... you have to install and determin python version like below.
 set -l ver "3.7.0"
 pyenv install $ver
 pyenv global $ver
+```
+
+SUGGESTION... you have to install `pynvim` python package for deoplete
+```
+pip install pynvim
 ```
 '

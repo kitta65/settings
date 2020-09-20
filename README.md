@@ -1,8 +1,8 @@
-## 概要
+# 概要
 オレオレ環境構築スクリプト。いったんはWSL2（Ubuntu-18.04・Debian）を想定。
 
-## 準備
-### fishのインストール
+# 準備
+## fishのインストール
 スクリプトはfish用に記載しているため、事前にインストールが必要。完了したらシェルを再起動。
 ```
 # install fish
@@ -14,7 +14,7 @@ sudo apt-get -y install fish
 chsh -s $(which fish)
 ```
 
-### リポジトリのclone
+## リポジトリのclone
 sshの設定はまだの前提なので、httpでcloneする。
 ```
 git clone https://github.com/dr666m1/setting.git ~/.setting
@@ -25,8 +25,8 @@ git clone https://github.com/dr666m1/setting.git ~/.setting
 git remote set-url origin git@github.com:dr666m1/setting.git
 ```
 
-## init.fish
-### 設定事項
+# init.fish
+## 設定事項
 - curl, zip, exaなど基本的なコマンド群のインストール
 - 自作ツールの設定（watcherなど）
 - mecabのインストール
@@ -36,17 +36,19 @@ git remote set-url origin git@github.com:dr666m1/setting.git
 - gitの設定
 - nodejsのインストール
 - claspのインストール（利用前に[APIの有効化](https://script.google.com/home/usersettings)が必要）
+- neovimのインストール
+- pyenvのインストール
+- google-cloud-sdkのインストール
 
-## gcp.fish
-### 備考
-サ―ビスアカウントを作成し、jsonファイルを任意の場所に保存すると各種権限を付与できる。以下のようにパスを指定すること。
+## 備考
+`init.fish`の実行後に、シェルを再起動し以下の対応をする。
+### google-cloud-sdk
+
 ```
 set -Ux GOOGLE_APPLICATION_CREDENTIALS $HOME/.gcp/xxxxxx.json
 ```
 
-## pyenv.fish
-### 備考
-実行後以下のように、任意のバージョンのインストールと設定を行う。
+### pyenv
 
 ```
 set -l ver "3.7.0"
@@ -54,10 +56,9 @@ pyenv install $ver
 pyenv global $ver
 ```
 
-## nvim.fish
-### 準備
-事前に `pyenv.fish` を実行しておく必要がある。
-
-### 備考
+### neovim
+```
+pip install pynvim
+```
 初回はnvim内で`:call dein#install()`（と、もしかしたら`:UpdateRemotePlugins`）を実行する必要がある。
 

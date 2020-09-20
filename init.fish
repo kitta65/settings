@@ -18,7 +18,7 @@ omf install batman
 
 #===== wsl =====
 read -p 'echo -e "input your user name of windows\n: "' winuser
-echo -e "[interop]\nappendWindowsPath = false" | sudo tee -a /etc/wsl.conf
+echo -e "[interop]\nappendWindowsPath = false" | sudo tee /etc/wsl.conf
 set -U fish_user_paths /mnt/c/WINDOWS/system32 $fish_user_paths
 echo '[wsl2]
 localhostForwarding=True

@@ -1,5 +1,5 @@
 [[plugins]]
-repo = 'Shougo/dein.vim'
+repo = '~/.dein/repos/github.com/Shougo/dein.vim'
 
 [[plugins]]
 repo = 'tomasr/molokai'

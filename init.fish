@@ -16,6 +16,7 @@ ln -s $setting_path/dotfiles/fish/config.fish ~/.config/fish/config.fish
 read -p 'echo -e "input your user name of windows\n: "' winuser
 echo -e "[interop]\nappendWindowsPath = false" | sudo tee /etc/wsl.conf
 set -U fish_user_paths /mnt/c/WINDOWS/system32 $fish_user_paths
+set -U fish_user_paths /mnt/c/Program\ Files/Docker/Docker/resources/bin/ $fish_user_paths
 echo '[wsl2]
 localhostForwarding=True
 memory=4GB' > /mnt/c/Users/$winuser/.wslconfig

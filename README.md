@@ -25,11 +25,11 @@ git clone https://github.com/dr666m1/setting.git ~/.setting
 git remote set-url origin git@github.com:dr666m1/setting.git
 ```
 
-# init.fish
-## 実行
+# 実行
+## 実行方法
 ログを記録したい場合は以下のように実行
 ```
-mkdir -p log
+mkdir -p ./log
 ./init.fish 2>&1 | tee ./log/stdout_and_stderr.log
 ```
 
@@ -47,16 +47,15 @@ mkdir -p log
 - pyenvのインストール
 - google-cloud-sdkのインストール
 
-## 備考
+## 追加対応
 `init.fish`の実行後に、シェルを再起動し以下の対応をする。
-### google-cloud-sdk
 
+### google-cloud-sdk
 ```
 set -Ux GOOGLE_APPLICATION_CREDENTIALS $HOME/.gcp/xxxxxx.json
 ```
 
 ### pyenv
-
 ```
 set -l ver "3.7.0"
 pyenv install $ver

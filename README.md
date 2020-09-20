@@ -26,6 +26,13 @@ git remote set-url origin git@github.com:dr666m1/setting.git
 ```
 
 # init.fish
+## 実行
+ログを記録したい場合は以下のように実行
+```
+mkdir -p log
+./init.fish 2>&1 | tee ./log/stdout_and_stderr.log
+```
+
 ## 設定事項
 - curl, zip, exaなど基本的なコマンド群のインストール
 - 自作ツールの設定（watcherなど）

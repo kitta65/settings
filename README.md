@@ -69,3 +69,10 @@ pip install pynvim
 ```
 初回はnvim内で`:call dein#install()`（と、もしかしたら`:UpdateRemotePlugins`）を実行する必要がある。
 
+### omf
+omfやそのテーマを使いたければ、以下のように実行する。
+あくまでテーマの管理に利用する想定で、いまのところ`~/.config/omf/init.fish`を使うつもりはない。
+```
+curl -L https://get.oh-my.fish | fish
+omf install batman
+```

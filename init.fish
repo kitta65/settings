@@ -3,7 +3,7 @@ cd (dirname (status filename))
 set -U setting_path (pwd)
 sudo apt update
 sudo apt -y install \
-    curl git vim zip unzip \
+    curl git vim zip unzip colordiff \
     mecab libmecab-dev mecab-ipadic-utf8 \
     fuse
 mkdir -p ~/.tmp

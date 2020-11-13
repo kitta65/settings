@@ -49,17 +49,17 @@ nnoremap gg gg0
 vnoremap gg gg0
 vnoremap $ $h
 function My0()
-    let g:myzero_len = max([strchars(matchstr(getline("."), "^\\S*")), strchars(matchstr(getline("."), "^\\s*"))])
-    let g:myzero_col = col(".")
-    let g:myzero_row = line(".")
-    if g:myzero_len < g:myzero_col
-        call cursor(g:myzero_row, g:myzero_len)
+    let l:myzero_current_row = line(".")
+    let l:myzero_next_col = strchars(matchstr(getline("."), "^\\s*"))+1
+    let l:myzero_current_col = col(".")
+    if 1 < l:myzero_next_col && l:myzero_next_col < l:myzero_current_col
+        call cursor(l:myzero_current_row, l:myzero_next_col)
     else
-        execute "normal! 0"
+        normal! 0
+        " !... ignore mappint
     endif
 endfunction
-nnoremap 0 :My0<cr>
-command -nargs=0 My0 call My0()
+nnoremap 0 :call<space>My0()<cr>
 
 "===== tab =====
 nnoremap @t :tabnew<cr>:e<space>.<cr>

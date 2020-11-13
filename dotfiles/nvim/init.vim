@@ -47,6 +47,19 @@ nnoremap <s-g> <s-g>$
 vnoremap <s-g> <s-g>$
 nnoremap gg gg0
 vnoremap gg gg0
+vnoremap $ $h
+function My0()
+    let g:myzero_len = max([strchars(matchstr(getline("."), "^\\S*")), strchars(matchstr(getline("."), "^\\s*"))])
+    let g:myzero_col = col(".")
+    let g:myzero_row = line(".")
+    if g:myzero_len < g:myzero_col
+        call cursor(g:myzero_row, g:myzero_len)
+    else
+        execute "normal! 0"
+    endif
+endfunction
+nnoremap 0 :My0<cr>
+command -nargs=0 My0 call My0()
 
 "===== tab =====
 nnoremap @t :tabnew<cr>:e<space>.<cr>

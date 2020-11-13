@@ -78,5 +78,5 @@ omf install batman
 
 ### docker
 [Docker Desktop WSL2 backend](https://docs.docker.com/docker-for-windows/wsl/)を利用可能にしておくとよい。
-`docker-compose`の動作不良の場合は`~/.docker`の削除を試す。
+動作不良の場合は`~/.docker`の削除を試す。
 もしくはこの[issue](https://github.com/docker/compose/issues/7495)が参考になるかもしれない。

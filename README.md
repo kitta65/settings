@@ -3,7 +3,7 @@
 
 # 準備
 ## fishのインストール
-スクリプトはfish用に記載しているため、事前にインストールが必要。完了したらシェルを再起動。
+スクリプトはfish用に記載しているため、以下のスクリプト('fish.sh')でにインストール。完了したらシェルを再起動。
 ```
 # install fish
 sudo apt-add-repository ppa:fish-shell/release-3

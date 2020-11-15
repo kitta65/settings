@@ -133,7 +133,7 @@ function MyClip()
     let l:start_row = line(l:start)
     let l:rtrim = strchars(matchstr(getline(l:end), "^.*", col(l:end)-1))-1
     let l:end_row = line(l:end)
-    return ":\<c-u>silent" . l:start_row . "," . l:end_row . "!sed\<space>-E\<space>'1\<space>s/^.{" . l:ltrim . "}//'\<space>|\<space>sed\<space>-E\<space>'$\<space>s/.{" . l:rtrim . "}$//'\<space>|\<space>clip.exe\<cr>u"
+    return "y:\<c-u>silent" . l:start_row . "," . l:end_row . "!sed\<space>-E\<space>'1\<space>s/^.{" . l:ltrim . "}//'\<space>|\<space>sed\<space>-E\<space>'$\<space>s/.{" . l:rtrim . "}$//'\<space>|\<space>clip.exe\<cr>u"
 endfunction
 vnoremap <expr>y MyClip()
 vnoremap i <s-i>

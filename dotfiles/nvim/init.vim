@@ -115,35 +115,27 @@ inoremap jj <esc>
 inoremap ｊｊ <esc>
 set number
 set list
-nnoremap @a :T clip_file %:p && exit<cr>
-nnoremap @p :T clip_winpath %:p && exit<cr>
-function MyClipFunc()
-    if line(".") == line("v")
-        let g:mysr = line(".")
-        let g:myer = g:mysr
-        if col(".") <= col("v")
-            let g:mysc = strchars(getline(".")) - strchars(matchstr(getline("."), ".*", col(".")-1))
-            let g:myec = strchars(matchstr(getline("."), ".*", col("v")-1)) - 1
-        else
-            let g:mysc = strchars(getline(".")) - strchars(matchstr(getline("."), ".*", col("v")-1))
-            let g:myec = strchars(matchstr(getline("."), ".*", col(".")-1)) - 1
-        endif
-    elseif line(".") < line("v")
-        let g:mysr = line(".")
-        let g:myer = line("v")
-        let g:mysc = strchars(getline(".")) - strchars(matchstr(getline("."), ".*", col(".")-1))
-        let g:myec = strchars(matchstr(getline("v"), ".*", col("v")-1)) - 1
+nnoremap @a :silent w !clip.exe<cr>
+nnoremap @p :!echo<space>%:p<space>\|<space>sed<space>"s/mnt\/c/C:/"<space>\|<space>clip.exe<cr><cr>
+" i don't know why, but `silent` doesn't work in `@p`
+function MyClip()
+    " note: `execute 'normal! `<'` is unavailable here
+    let l:dot_pos = getpos(".")
+    let l:v_pos = getpos("v")
+    if l:dot_pos[1] < l:v_pos[1] || (l:dot_pos[1] == l:v_pos[1] && l:dot_pos[2] <= l:v_pos[2])
+        let l:start = "."
+        let l:end = "v"
     else
-        let g:mysr = line("v")
-        let g:myer = line(".")
-        let g:mysc = strchars(getline("v")) - strchars(matchstr(getline("v"), ".*", col("v")-1))
-        let g:myec = strchars(matchstr(getline("."), ".*", col(".")-1)) - 1
+        let l:start = "v"
+        let l:end = "."
     endif
-    let g:mycmd = 'T clip_file ' . expand("%") . ' ' . g:mysr . ' ' . g:myer . ' ' . g:mysc . ' ' . g:myec . ' && exit'
-    return "y:execute g:mycmd" . "\<cr>"
+    let l:ltrim = strchars(getline(l:start)) - strchars(matchstr(getline(l:start), ".*", col(l:start)-1))
+    let l:start_row = line(l:start)
+    let l:rtrim = strchars(matchstr(getline(l:end), "^.*", col(l:end)-1))-1
+    let l:end_row = line(l:end)
+    return ":\<c-u>silent" . l:start_row . "," . l:end_row . "!sed\<space>-E\<space>'1\<space>s/^.{" . l:ltrim . "}//'\<space>|\<space>sed\<space>-E\<space>'$\<space>s/.{" . l:rtrim . "}$//'\<space>|\<space>clip.exe\<cr>u"
 endfunction
-vnoremap <expr>@y MyClipFunc()
-vnoremap y y`>
+vnoremap <expr>y MyClip()
 vnoremap i <s-i>
 vnoremap a <s-a>
 vnoremap v <esc>

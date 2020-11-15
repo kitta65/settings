@@ -35,10 +35,10 @@ syntax enable
 highlight Comment ctermfg=22
 
 "===== move =====
-inoremap <c-h> <left>
-inoremap <c-j> <down>
-inoremap <c-k> <up>
-inoremap <c-l> <right>
+noremap! <c-h> <left>
+noremap! <c-j> <down>
+noremap! <c-k> <up>
+noremap! <c-l> <right>
 tnoremap <c-h> <left>
 inoremap <c-j> <down>
 tnoremap <c-k> <up>
@@ -66,14 +66,13 @@ nnoremap @t :tabnew<cr>:e<space>.<cr>
 nnoremap <c-]> gt
 
 "===== quote & bracket =====
-inoremap { {}<left>
-inoremap ( ()<left>
-inoremap (; ();<left><left>
-inoremap " ""<left>
-inoremap ' ''<left>
-inoremap [ []<left>
-inoremap ` ``<left>
-"inoremap < <><left>
+noremap! ( ()<left>
+noremap! { {}<left>
+noremap! (; ();<left><left>
+noremap! " ""<left>
+noremap! ' ''<left>
+noremap! [ []<left>
+noremap! ` ``<left>
 tnoremap { {}<left>
 tnoremap ( ()<left>
 tnoremap " ""<left>
@@ -111,8 +110,8 @@ set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
 
 "===== other =====
 nnoremap / /\v
-inoremap jj <esc>
-inoremap ｊｊ <esc>
+noremap! jj <esc>
+noremap! ｊｊ <esc>
 set number
 set list
 nnoremap @a :silent w !clip.exe<cr>

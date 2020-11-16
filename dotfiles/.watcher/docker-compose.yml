@@ -1,13 +1,13 @@
 version: "3"
 services:
   websocket:
-    image: dr666m1/image_watcher_websocket
+    image: ghcr.io/dr666m1/image_watcher_websocket
     volumes:
       - .:/work/sync
     ports:
       - "9999:9999"
   webserver:
-    image: dr666m1/image_watcher_webserver
+    image: ghcr.io/dr666m1/image_watcher_webserver
     volumes:
       - .:/work/sync
     ports:

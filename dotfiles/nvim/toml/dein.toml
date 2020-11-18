@@ -21,3 +21,18 @@ hook_add = '''
         let g:neoterm_repl_python = 'source ' . s:venv_path . '/bin/activate.fish; and ipython --no-autoindent'
     endif
 '''
+
+[[plugins]]
+repo = 'Shougo/neosnippet'
+hook_add = '''
+    let g:neosnippet#disable_runtime_snippets={'_':1,}
+    let g:neosnippet#snippets_directory='~/.config/nvim/snip'
+    imap <expr><tab> neosnippet#expandable_or_jumpable() ? "\<plug>(neosnippet_expand_or_jump)" : "\<tab>"
+    smap <expr><tab> neosnippet#expandable_or_jumpable() ? "\<plug>(neosnippet_expand_or_jump)" : "\<tab>"
+    nnoremap @s :tabedit%<cr>:NeoSnippetEdit<cr>
+    set completeopt-=preview
+    "let g:neosnippet#enable_complete_done=1
+'''
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'

@@ -115,7 +115,7 @@ noremap! ｊｊ <esc>
 set number
 set list
 nnoremap @a :silent w !clip.exe<cr>
-nnoremap @p :!echo<space>%:p<space>\|<space>sed<space>"s/mnt\/c/C:/"<space>\|<space>clip.exe<cr><cr>
+nnoremap @p :!echo<space>%:p<space>\|<space>sed<space>"s/\/mnt\/c\//C:/"<space>\|<space>clip.exe<cr><cr>
 " i don't know why, but `silent` doesn't work in `@p`
 function MyClip()
     " note: `execute 'normal! `<'` is unavailable here

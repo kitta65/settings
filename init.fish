@@ -53,10 +53,12 @@ sudo npm install -g @google/clasp
 sudo npm install -g inquirer # dependent package
 
 #===== nvim =====
+mkdir -p $HOME/.config/coc
 curl -L https://github.com/neovim/neovim/releases/download/v0.4.4/nvim.appimage > ~/.tmp/nvim.appimage
 chmod u+x ~/.tmp/nvim.appimage
 sudo mv ~/.tmp/nvim.appimage /usr/local/bin/nvim
 ln -s $setting_path/dotfiles/nvim $HOME/.config/nvim
+ln -s $setting_path/dotfiles/nvim/snip $HOME/.config/coc/ultisnips
 git config --global core.editor nvim
 
 #===== vim-plug =====
@@ -81,7 +83,6 @@ echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.clou
 curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
 sudo apt-get -y update; sudo apt-get -y install google-cloud-sdk
 gcloud init
-
 
 #===== message =====
 echo '

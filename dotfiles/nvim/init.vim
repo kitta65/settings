@@ -1,35 +1,3 @@
-"dein Scripts-----------------------------
-if &compatible
-  set nocompatible               " Be iMproved
-endif
-
-" Required:
-set runtimepath+=$HOME/.dein/repos/github.com/Shougo/dein.vim
-
-" Required:
-if dein#load_state("$HOME/.dein")
-  call dein#begin("$HOME/.dein")
-
-  " read toml files
-  " when you first use toml, dein#recache_runtimepath() may be needed
-  call dein#load_toml("$HOME/.config/nvim/toml/dein.toml", {'lazy': 0})
-  call dein#load_toml("$HOME/.config/nvim/toml/dein_lazy.toml", {'lazy': 1})
-
-  " Required: 
-  call dein#end()
-  call dein#save_state()
-endif
-
-" Required:
-filetype plugin indent on
-syntax enable
-
-" If you want to install not installed plugins on startup.
-"if dein#check_install()
-"  call dein#install()
-"endif
-
-"End dein Scripts-------------------------
 
 "===== theme =====
 highlight Comment ctermfg=22

@@ -68,6 +68,8 @@ pip install pynvim python-language-server
 ```
 初回はnvim内で`:PlugInstall!`を実行する必要がある。`:CocInstall coc-dictionary`だけvim-plugで管理できないので個別に実行。
 
+もし毎回pylintがインストールされていないと表示されるなら、`:CocCommand python.setLinter`を試す。
+
 ### omf
 omfやそのテーマを使いたければ、以下のように実行する。
 あくまでテーマの管理に利用する想定で、いまのところ`~/.config/omf/init.fish`を使うつもりはない。

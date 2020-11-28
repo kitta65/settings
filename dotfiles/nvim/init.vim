@@ -34,12 +34,12 @@ nnoremap @s :tabedit%<cr>:CocCommand snippets.editSnippets<cr>
 
 "===== move cursor =====
 noremap! <c-h> <left>
-noremap! <c-j> <down>
-noremap! <c-k> <up>
-noremap! <c-l> <right>
 tnoremap <c-h> <left>
-inoremap <c-j> <down>
+noremap! <c-j> <down>
+tnoremap <c-j> <down>
+noremap! <c-k> <up>
 tnoremap <c-k> <up>
+noremap! <c-l> <right>
 tnoremap <c-l> <right>
 nnoremap <s-g> <s-g>$
 vnoremap <s-g> <s-g>$
@@ -54,7 +54,7 @@ function My0()
         call cursor(l:myzero_current_row, l:myzero_next_col)
     else
         normal! 0
-        " !... ignore mappint
+        " !... ignore mapping
     endif
 endfunction
 nnoremap 0 :call<space>My0()<cr>
@@ -65,17 +65,17 @@ nnoremap <c-]> gt
 
 "===== quote & bracket =====
 noremap! ( ()<left>
-noremap! { {}<left>
-noremap! (; ();<left><left>
-noremap! " ""<left>
-noremap! ' ''<left>
-noremap! [ []<left>
-noremap! ` ``<left>
-tnoremap { {}<left>
 tnoremap ( ()<left>
+noremap! (; ();<left><left>
+noremap! { {}<left>
+tnoremap { {}<left>
+noremap! " ""<left>
 tnoremap " ""<left>
+noremap! ' ''<left>
 tnoremap ' ''<left>
+noremap! [ []<left>
 tnoremap [ []<left>
+noremap! ` ``<left>
 tnoremap ` ``<left>
 inoremap {<cr> {}<left><cr><esc><s-o>
 inoremap (<cr> ()<left><cr><esc><s-o>
@@ -102,15 +102,7 @@ vnoremap /* :<c-u>call<space>MyQuote("/* ",   " */")<cr>
 vnoremap <! :<c-u>call<space>MyQuote("<!-- ", " -->")<cr>
 vnoremap q <esc>:MyQuote<space>
 
-"===== conceal & show =====
-set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
-
-"===== other =====
-nnoremap / /\v
-noremap! jj <esc>
-noremap! ｊｊ <esc>
-set number
-set list
+"===== clipboard =====
 nnoremap @a :silent w !clip.exe<cr>
 nnoremap @p :!echo<space>%:p<space>\|<space>sed<space>"s/\/mnt\/c\//C:/"<space>\|<space>clip.exe<cr><cr>
 " i don't know why, but `silent` doesn't work in `@p`
@@ -132,6 +124,14 @@ function MyClip()
     return "y:\<c-u>silent" . l:start_row . "," . l:end_row . "!sed\<space>-E\<space>'1\<space>s/^.{" . l:ltrim . "}//'\<space>|\<space>sed\<space>-E\<space>'$\<space>s/.{" . l:rtrim . "}$//'\<space>|\<space>clip.exe\<cr>u"
 endfunction
 vnoremap <expr><c-c> MyClip()
+
+"===== other =====
+nnoremap / /\v
+noremap! jj <esc>
+noremap! ｊｊ <esc>
+set number
+set list
+set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
 vnoremap i <s-i>
 vnoremap a <s-a>
 vnoremap v <esc>

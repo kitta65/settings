@@ -43,10 +43,10 @@ set -Ux EXA_COLORS "da=1;35"
 ln -s $setting_path/dotfiles/.watcher ~/.watcher
 
 #===== nodejs (via n) =====
-sudo apt install -y nodejs npm
-sudo npm install n -g
-sudo n stable
-sudo apt purge -y nodejs npm
+curl -L https://git.io/n-install | bash
+set -Ux N_PREFIX $HOME/n
+set -U fish_user_paths $N_PREFIX/bin $fish_user_paths
+npm install -g yarn
 
 #===== clasp =====
 sudo npm install -g @google/clasp
@@ -59,9 +59,9 @@ sudo mv ~/.tmp/nvim.appimage /usr/local/bin/nvim
 ln -s $setting_path/dotfiles/nvim $HOME/.config/nvim
 git config --global core.editor nvim
 
-#===== dein =====
-curl https://raw.githubusercontent.com/shougo/dein.vim/master/bin/installer.sh > ~/.tmp/dein_installer.sh
-sh ~/.tmp/dein_installer.sh ~/.dein
+#===== vim-plug =====
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 #===== pyenv =====
 sudo apt -y install \
@@ -101,7 +101,7 @@ pyenv global $ver
 
 SUGGESTION... you have to install `pynvim` python package for deoplete
 ```
-pip install pynvim
+pip install pynvim python-language-server
 ```
 
 SUGGESTION... to install omf and themes, run the code below

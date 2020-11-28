@@ -1,8 +1,38 @@
+"===== vim-plug =====
+call plug#begin('~/.vim/plugged')
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
+Plug 'kassio/neoterm'
+Plug 'tomasr/molokai'
+call plug#end()
 
 "===== theme =====
+colorscheme molokai
 highlight Comment ctermfg=22
 
-"===== move =====
+"===== neoterm =====
+let g:neoterm_default_mod='vertical'
+let g:neoterm_autoscroll=1
+tnoremap jj <c-\><c-n>
+nnoremap @c :Tnew<cr>
+nnoremap @e :T exit<cr>
+nnoremap rr :TREPLSendLine<cr><down>0
+nnoremap :: :T<space>
+vnoremap rr :<c-u>TREPLSendSelection<cr>:T<space>\<c<space><bs>r><cr>`>
+let s:venv_path = finddir("venv", ".;")
+if s:venv_path != ""
+    let g:neoterm_repl_python = 'source ' . s:venv_path . '/bin/activate.fish; and ipython --no-autoindent'
+endif
+
+"===== coc.nvim =====
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <silent><expr> <TAB> coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" : "\<tab>"
+let g:coc_snippet_next = '<tab>'
+let g:coc_snippet_prev = '<s-tab>'
+nnoremap @s :tabedit%<cr>:CocCommand snippets.editSnippets<cr>
+
+"===== move cursor =====
 noremap! <c-h> <left>
 noremap! <c-j> <down>
 noremap! <c-k> <up>
@@ -53,7 +83,6 @@ inoremap "<cr> ""<left><cr><esc><s-o>
 inoremap '<cr> ''<left><cr><esc><s-o>
 inoremap [<cr> []<left><cr><esc><s-o>
 inoremap `<cr> ``<left><cr><esc><s-o>
-"inoremap <<cr> <><left><cr><esc><s-o>
 command -nargs=* MyQuote call MyQuote(<f-args>)
 function MyQuote(l, ...)
     let l:r = get(a:000, 0, a:l)

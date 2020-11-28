@@ -1,9 +1,0 @@
-snippet init_docker
-	version: '2'
-	services:
-		${1:<<service_name>>}:
-			image: ${0:<<image>>}
-			ports:
-			 - "9999:9999"
-			volumes:
-			 - .:/sync

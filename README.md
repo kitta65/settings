@@ -2,6 +2,17 @@
 オレオレ環境構築スクリプト。いったんはWSL2（Ubuntu-18.04・Debian）を想定。
 
 # 準備
+## リポジトリのclone
+sshの設定はまだの前提なので、httpでcloneする。
+```
+git clone https://github.com/dr666m1/setting.git ~/.setting
+```
+後でsshを利用したくなったら以下のようにする。
+
+```
+git remote set-url origin git@github.com:dr666m1/setting.git
+```
+
 ## fishのインストール
 スクリプトはfish用に記載しているため、以下のスクリプト('fish.sh')でにインストール。完了したらシェルを再起動。
 ```
@@ -12,17 +23,6 @@ sudo apt-get -y install fish
 
 # change default shell
 chsh -s $(which fish)
-```
-
-## リポジトリのclone
-sshの設定はまだの前提なので、httpでcloneする。
-```
-git clone https://github.com/dr666m1/setting.git ~/.setting
-```
-後でsshを利用したくなったら以下のようにする。
-
-```
-git remote set-url origin git@github.com:dr666m1/setting.git
 ```
 
 # 実行
@@ -64,9 +64,11 @@ pyenv global $ver
 
 ### neovim
 ```
-pip install pynvim
+pip install pynvim python-language-server
 ```
-初回はnvim内で`:call dein#install()`（と、もしかしたら`:UpdateRemotePlugins`）を実行する必要がある。
+初回はnvim内で`:PlugInstall!`を実行する必要がある。`:CocInstall coc-dictionary`だけvim-plugで管理できないので個別に実行。
+
+もし毎回pylintがインストールされていないと表示されるなら、`:CocCommand python.setLinter`を試す。
 
 ### omf
 omfやそのテーマを使いたければ、以下のように実行する。

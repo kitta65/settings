@@ -1,9 +1,0 @@
-snippet init
-	#!/usr/bin/env fish
-	cd (dirname (status filename))
-snippet set_path
-	set -Ux fish_user_paths $fish_user_paths ${0}
-snippet set_path_drop
-	set fish_user_paths (string match -v ${0} $fish_user_paths)
-snippet sec
-	#===== ${0} =====

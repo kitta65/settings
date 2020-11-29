@@ -5,32 +5,38 @@ Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
 Plug 'kassio/neoterm'
 Plug 'tomasr/molokai'
+Plug 'yggdroot/indentLine'
 call plug#end()
 
 "===== theme =====
 colorscheme molokai
 highlight Comment ctermfg=22
 
+"===== indentLine =====
+autocmd Filetype markdown,json IndentLinesDisable
+
 "===== neoterm =====
-let g:neoterm_default_mod='vertical'
-let g:neoterm_autoscroll=1
+let g:neoterm_default_mod = 'vertical'
+let g:neoterm_autoscroll = 1
+let g:neoterm_auto_repl_cmd = 0
 tnoremap jj <c-\><c-n>
-nnoremap @c :Tnew<cr>
 nnoremap @e :T exit<cr>
 nnoremap rr :TREPLSendLine<cr><down>0
-nnoremap :: :T<space>
-vnoremap rr :<c-u>TREPLSendSelection<cr>:T<space>\<c<space><bs>r><cr>`>
+nnoremap :: q:iT<space>
+vnoremap rr :<c-u>TREPLSendSelection<cr>:T<space><c-v><cr><cr>`>
+autocmd Filetype javascript vnoremap rr :<c-u>T<space>.editor<cr>:TREPLSendSelection<cr>:T<space><c-v><c-d><cr>
 let s:venv_path = finddir("venv", ".;")
 if s:venv_path != ""
     let g:neoterm_repl_python = 'source ' . s:venv_path . '/bin/activate.fish; and ipython --no-autoindent'
 endif
 
 "===== coc.nvim =====
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 inoremap <silent><expr> <TAB> coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" : "\<tab>"
 let g:coc_snippet_next = '<tab>'
 let g:coc_snippet_prev = '<s-tab>'
 nnoremap @s :tabedit%<cr>:CocCommand snippets.editSnippets<cr>
+"mapping <cr> to <c-y> is recommended, but i don't like it
+"inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 "===== move cursor =====
 noremap! <c-h> <left>
@@ -54,7 +60,7 @@ function My0()
         call cursor(l:myzero_current_row, l:myzero_next_col)
     else
         normal! 0
-        " !... ignore mapping
+        "!... ignore mapping
     endif
 endfunction
 nnoremap 0 :call<space>My0()<cr>
@@ -105,25 +111,8 @@ vnoremap q <esc>:MyQuote<space>
 "===== clipboard =====
 nnoremap @a :silent w !clip.exe<cr>
 nnoremap @p :!echo<space>%:p<space>\|<space>sed<space>"s/\/mnt\/c\//C:/"<space>\|<space>clip.exe<cr><cr>
-" i don't know why, but `silent` doesn't work in `@p`
-function MyClip()
-    " note: `execute 'normal! `<'` is unavailable here
-    let l:dot_pos = getpos(".")
-    let l:v_pos = getpos("v")
-    if l:dot_pos[1] < l:v_pos[1] || (l:dot_pos[1] == l:v_pos[1] && l:dot_pos[2] <= l:v_pos[2])
-        let l:start = "."
-        let l:end = "v"
-    else
-        let l:start = "v"
-        let l:end = "."
-    endif
-    let l:ltrim = strchars(getline(l:start)) - strchars(matchstr(getline(l:start), ".*", col(l:start)-1))
-    let l:start_row = line(l:start)
-    let l:rtrim = strchars(matchstr(getline(l:end), "^.*", col(l:end)-1))-1
-    let l:end_row = line(l:end)
-    return "y:\<c-u>silent" . l:start_row . "," . l:end_row . "!sed\<space>-E\<space>'1\<space>s/^.{" . l:ltrim . "}//'\<space>|\<space>sed\<space>-E\<space>'$\<space>s/.{" . l:rtrim . "}$//'\<space>|\<space>clip.exe\<cr>u"
-endfunction
-vnoremap <expr><c-c> MyClip()
+"i don't know why, but `silent` doesn't work in `@p`
+vnoremap <c-c> y'>o<c-r>0<esc>`.v`>j0:!clip.exe<cr>
 
 "===== other =====
 nnoremap / /\v

@@ -112,7 +112,7 @@ vnoremap q <esc>:MyQuote<space>
 nnoremap @a :silent w !clip.exe<cr>
 nnoremap @p :!echo<space>%:p<space>\|<space>sed<space>"s/\/mnt\/c\//C:/"<space>\|<space>clip.exe<cr><cr>
 "i don't know why, but `silent` doesn't work in `@p`
-vnoremap <c-c> y'>o<c-r>0<esc>`.v`>j0:!clip.exe<cr>
+vnoremap <c-c> y:call<space>system("clip.exe",@0)<cr>
 
 "===== other =====
 nnoremap / /\v

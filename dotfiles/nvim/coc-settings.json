@@ -1,5 +1,6 @@
 {
     "snippets": {
         "loadFromExtensions": false
-    }
+    },
+    "python.jediEnabled": false
 }

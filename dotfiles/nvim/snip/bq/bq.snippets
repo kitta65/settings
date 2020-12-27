@@ -1,0 +1,47 @@
+# A valid snippet should starts with:
+#
+#		snippet trigger_word [ "description" [ options ] ]
+#
+# and end with:
+#
+#		endsnippet
+#
+# Snippet options:
+#
+#		b - Beginning of line.
+#		i - In-word expansion.
+#		w - Word boundary.
+#		r - Regular expression
+#		e - Custom context snippet
+#		A - Snippet will be triggered automatically, when condition matches.
+#
+# Basic example:
+#
+#		snippet emitter "emitter properties" b
+#		private readonly ${1} = new Emitter<$2>()
+#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#		endsnippet
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+snippet dummy
+select            1 x,  1 y, 11 z
+union all select  2,    1,   12
+union all select  3,    1,   13
+union all select  4,    1,   14
+union all select  5,    1,   15
+union all select  6,    1, null
+union all select  7,    1, null
+union all select  8,    1, null
+union all select  9,    1, null
+union all select 10,    1, null
+union all select 11,    2,   11
+union all select 12,    2,   12
+union all select 13,    2,   13
+union all select 14,    2,   14
+union all select 15,    2,   15
+union all select 16, null,   16
+union all select 17, null,   17
+union all select 18, null,   18
+union all select 19, null,   19
+union all select 20, null,   20$0
+endsnippet

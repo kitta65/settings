@@ -34,7 +34,7 @@ endif
 inoremap <silent><expr> <TAB> coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" : "\<tab>"
 let g:coc_snippet_next = '<tab>'
 let g:coc_snippet_prev = '<s-tab>'
-nnoremap @s :tabedit%<cr>:CocCommand snippets.editSnippets<cr>
+nnoremap @s :tabedit<space>%<cr>:CocCommand snippets.openSnippetFiles<cr>
 "mapping <cr> to <c-y> is recommended, but i don't like it
 "inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
@@ -72,7 +72,6 @@ nnoremap <c-]> gt
 "===== quote & bracket =====
 noremap! ( ()<left>
 tnoremap ( ()<left>
-noremap! (; ();<left><left>
 noremap! { {}<left>
 tnoremap { {}<left>
 noremap! " ""<left>
@@ -81,8 +80,10 @@ noremap! ' ''<left>
 tnoremap ' ''<left>
 noremap! [ []<left>
 tnoremap [ []<left>
+autocmd filetype markdown inoremap <buffer> [ [
 noremap! ` ``<left>
 tnoremap ` ``<left>
+autocmd filetype tex inoremap <buffer> ` `
 inoremap {<cr> {}<left><cr><esc><s-o>
 inoremap (<cr> ()<left><cr><esc><s-o>
 inoremap "<cr> ""<left><cr><esc><s-o>

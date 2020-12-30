@@ -6,24 +6,32 @@ Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
 Plug 'kassio/neoterm'
 Plug 'tomasr/molokai'
 Plug 'yggdroot/indentLine'
+Plug 'lervag/vimtex'
+Plug 'aliva/vim-fish'
+Plug 'neoclide/vim-jsx-improve'
+Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build' }
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 call plug#end()
+
+"===== common =====
+let mapleader = "\<space>"
 
 "===== theme =====
 colorscheme molokai
 highlight Comment ctermfg=22
 
 "===== indentLine =====
-autocmd Filetype markdown,json IndentLinesDisable
+autocmd Filetype markdown,json,tex IndentLinesDisable
 
 "===== neoterm =====
 let g:neoterm_default_mod = 'vertical'
 let g:neoterm_autoscroll = 1
 let g:neoterm_auto_repl_cmd = 0
 tnoremap jj <c-\><c-n>
-nnoremap @e :T exit<cr>
-nnoremap rr :TREPLSendLine<cr><down>0
+nnoremap <leader>e :T exit<cr>
+nnoremap <leader>r :TREPLSendLine<cr><down>0
 nnoremap :: q:iT<space>
-vnoremap rr :<c-u>TREPLSendSelection<cr>:T<space><c-v><cr><cr>`>
+vnoremap <leader>r :<c-u>TREPLSendSelection<cr>:T<space><c-v><cr><cr>`>
 autocmd Filetype javascript vnoremap rr :<c-u>T<space>.editor<cr>:TREPLSendSelection<cr>:T<space><c-v><c-d><cr>
 let s:venv_path = finddir("venv", ".;")
 if s:venv_path != ""
@@ -31,10 +39,11 @@ if s:venv_path != ""
 endif
 
 "===== coc.nvim =====
-inoremap <silent><expr> <TAB> coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" : "\<tab>"
+inoremap <silent><expr> <tab> coc#expandableOrJumpable() ? "\<c-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<cr>" : "\<tab>"
+vmap <tab> <Plug>(coc-snippets-select)
 let g:coc_snippet_next = '<tab>'
 let g:coc_snippet_prev = '<s-tab>'
-nnoremap @s :tabedit<space>%<cr>:CocCommand snippets.openSnippetFiles<cr>
+nnoremap <leader>s :tabedit<space>%<cr>:CocCommand snippets.openSnippetFiles<cr>
 "mapping <cr> to <c-y> is recommended, but i don't like it
 "inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
@@ -64,10 +73,12 @@ function My0()
     endif
 endfunction
 nnoremap 0 :call<space>My0()<cr>
+vnoremap 0 :call<space>My0()<cr>
 
 "===== tab =====
-nnoremap @t :tabnew<cr>:e<space>.<cr>
+nnoremap <leader>t :tabnew<cr>:e<space>.<cr>
 nnoremap <c-]> gt
+nnoremap <c-[> gT
 
 "===== quote & bracket =====
 noremap! ( ()<left>
@@ -80,10 +91,8 @@ noremap! ' ''<left>
 tnoremap ' ''<left>
 noremap! [ []<left>
 tnoremap [ []<left>
-autocmd filetype markdown inoremap <buffer> [ [
 noremap! ` ``<left>
 tnoremap ` ``<left>
-autocmd filetype tex inoremap <buffer> ` `
 inoremap {<cr> {}<left><cr><esc><s-o>
 inoremap (<cr> ()<left><cr><esc><s-o>
 inoremap "<cr> ""<left><cr><esc><s-o>
@@ -110,10 +119,8 @@ vnoremap <! :<c-u>call<space>MyQuote("<!-- ", " -->")<cr>
 vnoremap q <esc>:MyQuote<space>
 
 "===== clipboard =====
-nnoremap @a :silent w !clip.exe<cr>
-nnoremap @p :!echo<space>%:p<space>\|<space>sed<space>"s/\/mnt\/c\//C:/"<space>\|<space>clip.exe<cr><cr>
-"i don't know why, but `silent` doesn't work in `@p`
-vnoremap <c-c> y:call<space>system("clip.exe",@0)<cr>
+nnoremap <leader>a :silent w !clip.exe<cr>
+vnoremap <leader>y y:call<space>system("clip.exe",@0)<cr>
 
 "===== other =====
 nnoremap / /\v
@@ -125,10 +132,14 @@ set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
 vnoremap i <s-i>
 vnoremap a <s-a>
 vnoremap v <esc>
+"nnoremap <c-l> <c-w>l
 nnoremap <c-l> <c-w>w
-nnoremap < 10<c-w><
-nnoremap > 10<c-w>>
-nnoremap <expr>@v (&paste == 0) ? ":set paste\<cr>" : ":set nopaste\<cr>"
+nnoremap <c-h> <c-w>h
+nnoremap <leader>w 10<c-w><
+"nnoremap > 10<c-w>>
+nnoremap <expr><leader>v (&paste == 0) ? ":set paste\<cr>" : ":set nopaste\<cr>"
+autocmd InsertLeave * set nopaste
+nnoremap <leader>p :PrettierAsync<cr>
 
 "===== dictionary =====
 autocmd Filetype * execute 'setlocal dictionary+=~/.setting/dotfiles/nvim/dict/' . &filetype . '.txt'

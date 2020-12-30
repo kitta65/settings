@@ -78,6 +78,14 @@ curl -L https://get.oh-my.fish | fish
 omf install batman
 ```
 
+### ngrok
+認証を完了するため、
+[ここ](https://dashboard.ngrok.com/auth/your-authtoken)でトークンを確認し以下を実行
+
+```
+ngrok authtoken xxxxxxxxxx
+```
+
 ### docker
 [Docker Desktop WSL2 backend](https://docs.docker.com/docker-for-windows/wsl/)を利用可能にしておくとよい。
 動作不良の場合は`~/.docker`の削除を試す。

@@ -65,6 +65,12 @@ git config --global core.editor nvim
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
+#===== ngrok =====
+curl -LO https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
+unzip /path/to/ngrok.zip
+sudo mv ./ngrok /usr/local/bin
+
+
 #===== pyenv =====
 sudo apt -y install \
     make build-essential zlib1g-dev libbz2-dev \
@@ -87,27 +93,4 @@ gcloud init
 #===== message =====
 echo '
 done!!!
-
-SUGGESTION... you can create service account and specify credential like below.
-```
-set -Ux GOOGLE_APPLICATION_CREDENTIALS $HOME/.gcp/xxxxxx.json
-```
-
-SUGGESTION... you have to install and determin python version like below.
-```
-set -l ver "3.7.0"
-pyenv install $ver
-pyenv global $ver
-```
-
-SUGGESTION... you have to install `pynvim` python package for deoplete
-```
-pip install pynvim python-language-server
-```
-
-SUGGESTION... to install omf and themes, run the code below
-```
-curl -L https://get.oh-my.fish | fish
-omf install batman
-```
 '

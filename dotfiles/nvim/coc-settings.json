@@ -1,6 +1,8 @@
 {
-    "snippets": {
-        "loadFromExtensions": false
-    },
-    "python.jediEnabled": false
+  "coc.source.around.firstMatch": false,
+  "coc.source.buffer.firstMatch": false,
+  "snippets": {
+    "loadFromExtensions": false
+  },
+  "python.jediEnabled": true
 }

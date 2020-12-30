@@ -27,3 +27,43 @@ snippet ch
 ##### ${1:chapter} #####$0
 endsnippet
 
+snippet alt_point
+chart = alt.Chart(${0})
+chart.mark_point().encode(
+	x="",
+	y="",
+).interactive().save("chart.html")
+endsnippet
+
+snippet alt_point_with_label
+chart = alt.Chart(${0})
+chart.mark_point().encode(
+	x="",
+	y="",
+	tooltip=[""]
+)
+endsnippet
+
+snippet alt_line
+chart = alt.Chart(${0})
+chart.mark_line().encode(
+	x="",
+	y="",
+).interactive().save("chart.html")
+endsnippet
+
+snippet alt_line_with_conf
+chart = alt.Chart(${0})
+line = chart.mark_line().encode(
+	x="",
+	y="mean()",
+)
+band = chart.mark_errorband(extent="ci").encode(
+	#ci...confidence interval
+	#stderr...standard error
+	#stdev...standard deviation
+	x="",
+	y="",
+)
+(line + band).interactive().save("chart.html")
+endsnippet

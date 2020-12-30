@@ -1,0 +1,31 @@
+snippet init
+#!/bin/bash
+cd $(dirname \$0)
+${0}
+endsnippet
+
+snippet if
+if [[ $1 ]]; then
+	${0::}
+fi
+endsnippet
+
+snippet bq_query
+cat $1 | bq query --format=csv --max_rows=10000 --use_legacy_sql=false$0
+endsnippet
+
+snippet bq_load
+bq load ${1:--autodetect }--skip_leading_rows ${2:0} ${3:project:}${4:dataset.}${5:table} ${6:filepath} ${0:col1:string,col2:int64}
+endsnippet
+
+snippet getopts
+while getopts ${1:a:} OPT; do
+	case $OPT in
+		${2:a} )
+			${0:echo $OPTARG}
+		;;
+		\? ) exit 1;;
+	esac
+done
+endsnippet
+# https://docs.oracle.com/cd/E86824_01/html/E54763/getopts-1.html

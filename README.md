@@ -70,6 +70,8 @@ pip install pynvim python-language-server
 
 もし毎回pylintがインストールされていないと表示されるなら、`:CocCommand python.setLinter`を試す。
 
+pyenvのpython環境が反映されないなら`:CocCommand python.setInterpreter`を試す。
+
 ### omf
 omfやそのテーマを使いたければ、以下のように実行する。
 あくまでテーマの管理に利用する想定で、いまのところ`~/.config/omf/init.fish`を使うつもりはない。

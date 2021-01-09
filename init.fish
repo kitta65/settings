@@ -39,14 +39,15 @@ unzip ~/.tmp/exa-linux-x86_64-0.9.0.zip
 sudo mv ./exa-linux-x86_64 /usr/local/bin/exa
 set -Ux EXA_COLORS "da=1;35"
 
-#===== watcher =====
-ln -s $setting_path/dotfiles/.watcher ~/.watcher
-
 #===== nodejs (via n) =====
 curl -L https://git.io/n-install | bash
 set -Ux N_PREFIX $HOME/n
 set -U fish_user_paths $N_PREFIX/bin $fish_user_paths
+# yarn
 npm install -g yarn
+set -Ux fish_user_paths $HOME/.yarn/bin $fish_user_paths
+# serve
+yarn global add serve
 
 #===== clasp =====
 sudo npm install -g @google/clasp

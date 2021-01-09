@@ -32,7 +32,7 @@ nnoremap <leader>e :T exit<cr>
 nnoremap <leader>r :TREPLSendLine<cr><down>0
 nnoremap :: q:iT<space>
 vnoremap <leader>r :<c-u>TREPLSendSelection<cr>:T<space><c-v><cr><cr>`>
-autocmd Filetype javascript vnoremap rr :<c-u>T<space>.editor<cr>:TREPLSendSelection<cr>:T<space><c-v><c-d><cr>
+autocmd Filetype javascript vnoremap <leader>r :<c-u>T<space>.editor<cr>:TREPLSendSelection<cr>:T<space><c-v><c-d><cr>
 let s:venv_path = finddir("venv", ".;")
 if s:venv_path != ""
     let g:neoterm_repl_python = 'source ' . s:venv_path . '/bin/activate.fish; and ipython --no-autoindent'
@@ -62,18 +62,17 @@ nnoremap gg gg0
 vnoremap gg gg0
 vnoremap $ $h
 function My0()
-    let l:myzero_current_row = line(".")
     let l:myzero_next_col = strchars(matchstr(getline("."), "^\\s*"))+1
     let l:myzero_current_col = col(".")
     if 1 < l:myzero_next_col && l:myzero_next_col < l:myzero_current_col
-        call cursor(l:myzero_current_row, l:myzero_next_col)
+        return "0eb"
     else
-        normal! 0
+        return "0"
         "!... ignore mapping
     endif
 endfunction
-nnoremap 0 :call<space>My0()<cr>
-vnoremap 0 :call<space>My0()<cr>
+nnoremap <expr>0 My0()
+vnoremap <expr>0 My0()
 
 "===== tab =====
 nnoremap <leader>t :tabnew<cr>:e<space>.<cr>
@@ -93,6 +92,7 @@ noremap! [ []<left>
 tnoremap [ []<left>
 noremap! ` ``<left>
 tnoremap ` ``<left>
+noremap! < <><left>
 inoremap {<cr> {}<left><cr><esc><s-o>
 inoremap (<cr> ()<left><cr><esc><s-o>
 inoremap "<cr> ""<left><cr><esc><s-o>
@@ -120,6 +120,8 @@ vnoremap q <esc>:MyQuote<space>
 
 "===== clipboard =====
 nnoremap <leader>a :silent w !clip.exe<cr>
+nnoremap <leader>d :!echo<space>%:p<space>\|<space>sed<space>"s/\/mnt\/c\//C:/"<space>\|<space>clip.exe<cr><cr>
+"i don't know why, but `silent` doesn't work in `<leader>d`
 vnoremap <leader>y y:call<space>system("clip.exe",@0)<cr>
 
 "===== other =====
@@ -136,14 +138,12 @@ vnoremap v <esc>
 nnoremap <c-l> <c-w>w
 nnoremap <c-h> <c-w>h
 nnoremap <leader>w 10<c-w><
-"nnoremap > 10<c-w>>
 nnoremap <expr><leader>v (&paste == 0) ? ":set paste\<cr>" : ":set nopaste\<cr>"
 autocmd InsertLeave * set nopaste
 nnoremap <leader>p :PrettierAsync<cr>
 
 "===== dictionary =====
 autocmd Filetype * execute 'setlocal dictionary+=~/.setting/dotfiles/nvim/dict/' . &filetype . '.txt'
-"set complete+=k
 
 "===== local_setting =====
 runtime ./init_local.vim

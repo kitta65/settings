@@ -65,7 +65,7 @@ function My0()
     let l:myzero_next_col = strchars(matchstr(getline("."), "^\\s*"))+1
     let l:myzero_current_col = col(".")
     if 1 < l:myzero_next_col && l:myzero_next_col < l:myzero_current_col
-        return "0eb"
+        return "0w"
     else
         return "0"
         "!... ignore mapping

@@ -11,6 +11,7 @@ Plug 'aliva/vim-fish'
 Plug 'neoclide/vim-jsx-improve'
 Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build' }
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+Plug 'MattesGroeger/vim-bookmarks'
 call plug#end()
 
 "===== common =====
@@ -123,6 +124,9 @@ nnoremap <leader>a :silent w !clip.exe<cr>
 nnoremap <leader>d :!echo<space>%:p<space>\|<space>sed<space>"s/\/mnt\/c\//C:/"<space>\|<space>clip.exe<cr><cr>
 "i don't know why, but `silent` doesn't work in `<leader>d`
 vnoremap <leader>y y:call<space>system("clip.exe",@0)<cr>
+nnoremap <expr><leader>v (&paste == 0) ? ":set paste\<cr>" : ":set nopaste\<cr>"
+autocmd InsertLeave * set nopaste
+"nnoremap <leader>v :r!powershell.exe<space>Get-Clipboard<cr>
 
 "===== other =====
 nnoremap / /\v
@@ -138,8 +142,6 @@ vnoremap v <esc>
 nnoremap <c-l> <c-w>w
 nnoremap <c-h> <c-w>h
 nnoremap <leader>w 10<c-w><
-nnoremap <expr><leader>v (&paste == 0) ? ":set paste\<cr>" : ":set nopaste\<cr>"
-autocmd InsertLeave * set nopaste
 nnoremap <leader>p :PrettierAsync<cr>
 
 "===== dictionary =====

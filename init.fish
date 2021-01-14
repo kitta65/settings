@@ -1,12 +1,12 @@
 #!/usr/bin/env fish
-cd (dirname (status filename))
-set -U setting_path (pwd)
+set -U setting_path (dirname (status filename))
 sudo apt update
 sudo apt -y install \
     curl git vim zip unzip colordiff \
     mecab libmecab-dev mecab-ipadic-utf8 \
     fuse
 mkdir -p ~/.tmp
+cd ~/.tmp
 
 #==== fish =====
 ln -s $setting_path/dotfiles/fish/functions ~/.config/fish/functions
@@ -49,9 +49,15 @@ set -Ux fish_user_paths $HOME/.yarn/bin $fish_user_paths
 # serve
 yarn global add serve
 
+#===== win32yank =====
+curl -OL https://github.com/equalsraf/win32yank/releases/download/v0.0.4/win32yank-x64.zip
+unzip win32yank-x64.zip
+chmod +x win32yank-x64.zip
+sudo mv win32yank.exe /usr/local/bin/
+
 #===== clasp =====
 sudo npm install -g @google/clasp
-sudo npm install -g inquirer # dependent package
+# https://github.com/google/clasp/issues/736
 
 #===== nvim =====
 mkdir -p $HOME/.config/coc

@@ -16,6 +16,7 @@ ln -s $setting_path/dotfiles/fish/config.fish ~/.config/fish/config.fish
 read -p 'echo -e "input your user name of windows\n: "' winuser
 echo -e "[interop]\nappendWindowsPath = false" | sudo tee /etc/wsl.conf
 set -U fish_user_paths /mnt/c/WINDOWS/system32 $fish_user_paths
+set -U fish_user_paths /mnt/c/WINDOWS/System32//WindowsPowerShell/v1.0 $fish_user_paths
 echo '[wsl2]
 localhostForwarding=True
 memory=4GB' > /mnt/c/Users/$winuser/.wslconfig
@@ -48,12 +49,6 @@ npm install -g yarn
 set -Ux fish_user_paths $HOME/.yarn/bin $fish_user_paths
 # serve
 yarn global add serve
-
-#===== win32yank =====
-curl -OL https://github.com/equalsraf/win32yank/releases/download/v0.0.4/win32yank-x64.zip
-unzip win32yank-x64.zip
-chmod +x win32yank-x64.zip
-sudo mv win32yank.exe /usr/local/bin/
 
 #===== clasp =====
 sudo npm install -g @google/clasp

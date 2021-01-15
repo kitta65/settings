@@ -45,3 +45,10 @@ union all select 18, null,   18
 union all select 19, null,   19
 union all select 20, null,   20$0
 endsnippet
+
+snippet init
+create temp function start_date() as (date '`date "+%Y-%m-%d"`');
+create temp function start_date_str(format string) as (
+	format_date(format, start_date())
+);$0
+endsnippet

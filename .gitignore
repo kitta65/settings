@@ -1,6 +1,4 @@
 *local*
-*config*
-!config.fish
 .netrwhist
 fish_prompt.fish
 log/

@@ -12,10 +12,17 @@ Plug 'neoclide/vim-jsx-improve'
 Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build' }
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'MattesGroeger/vim-bookmarks'
+Plug 'itchyny/lightline.vim'
+Plug 'preservim/nerdtree'
 call plug#end()
 
 "===== common =====
 let mapleader = "\<space>"
+
+"===== NERDTree =====
+nnoremap <leader>f :NERDTreeFocus<cr>
+let NERDTreeCustomOpenArgs = {'file': {'reuse': 'all', 'where': 't'}, 'dir': {}}
+let NERDTreeQuitOnOpen = 1
 
 "===== theme =====
 colorscheme molokai
@@ -29,15 +36,39 @@ let g:neoterm_default_mod = 'vertical'
 let g:neoterm_autoscroll = 1
 let g:neoterm_auto_repl_cmd = 0
 tnoremap jj <c-\><c-n>
-nnoremap <leader>e :T exit<cr>
 nnoremap <leader>r :TREPLSendLine<cr><down>0
 nnoremap :: q:iT<space>
 vnoremap <leader>r :<c-u>TREPLSendSelection<cr>:T<space><c-v><cr><cr>`>
-autocmd Filetype javascript vnoremap <leader>r :<c-u>T<space>.editor<cr>:TREPLSendSelection<cr>:T<space><c-v><c-d><cr>
-let s:venv_path = finddir("venv", ".;")
-if s:venv_path != ""
-    let g:neoterm_repl_python = 'source ' . s:venv_path . '/bin/activate.fish; and ipython --no-autoindent'
-endif
+autocmd Filetype javascript vnoremap <leader>r :<c-u>T<space>.editor<cr>:TREPLSendSelection<cr>:T<space><c-v><c-d><cr>`>
+nnoremap <expr><leader>t MyRepl()
+let g:myrepl_current_status = "none"
+function MyRepl()
+    if g:myrepl_current_status == "none"
+        if &filetype == "python"
+            let g:myrepl_exit_command = ":T exit()\<cr>"
+            let g:myrepl_current_status = &filetype
+            return ":T ipython --no-autoindent\<cr>"
+        elseif &filetype == "javascriptreact" || &filetype == "javascript"
+            let g:myrepl_exit_command = ":T .exit\<cr>"
+            let g:myrepl_current_status = &filetype
+            return ":T .node\<cr>"
+        else
+            let g:myrepl_exit_command = ":T exit\<cr>"
+            let g:myrepl_current_status = "shell"
+            return ":T echo 'using common repl!'"
+        endif
+    else
+        if g:myrepl_current_status == "shell"
+            let g:myrepl_exit_command = ":T exit\<cr>"
+            let g:myrepl_current_status = "none"
+            return g:myrepl_exit_command
+        else
+            let g:myrepl_current_status = "shell"
+            return g:myrepl_exit_command
+        endif
+    endif
+endfunction
+nnoremap <leader>w :Ttoggle<cr>
 
 "===== coc.nvim =====
 inoremap <silent><expr> <tab> coc#expandableOrJumpable() ? "\<c-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<cr>" : "\<tab>"
@@ -57,6 +88,18 @@ noremap! <c-k> <up>
 tnoremap <c-k> <up>
 noremap! <c-l> <right>
 tnoremap <c-l> <right>
+inoremap <leader>h <esc>h
+tnoremap <leader>h <esc>h
+inoremap <leader>j <esc>j
+tnoremap <leader>j <esc>j
+inoremap <leader>k <esc>k
+tnoremap <leader>k <esc>k
+inoremap <leader>l <esc>l
+tnoremap <leader>l <esc>l
+inoremap <leader>e <esc>e
+inoremap <leader>e <esc>e
+tnoremap <leader>b <esc>b
+tnoremap <leader>b <esc>b
 nnoremap <s-g> <s-g>$
 vnoremap <s-g> <s-g>$
 nnoremap gg gg0
@@ -76,7 +119,7 @@ nnoremap <expr>0 My0()
 vnoremap <expr>0 My0()
 
 "===== tab =====
-nnoremap <leader>t :tabnew<cr>:e<space>.<cr>
+"nnoremap <leader>t :tabnew<cr>:e<space>.<cr>
 nnoremap <c-]> gt
 nnoremap <c-[> gT
 
@@ -119,14 +162,15 @@ vnoremap /* :<c-u>call<space>MyQuote("/* ",   " */")<cr>
 vnoremap <! :<c-u>call<space>MyQuote("<!-- ", " -->")<cr>
 vnoremap q <esc>:MyQuote<space>
 
-"===== clipboard =====
+"===== yank & paste =====
 nnoremap <leader>a :silent w !clip.exe<cr>
 nnoremap <leader>d :!echo<space>%:p<space>\|<space>sed<space>"s/\/mnt\/c\//C:/"<space>\|<space>clip.exe<cr><cr>
 "i don't know why, but `silent` doesn't work in `<leader>d`
-vnoremap <leader>y y:call<space>system("clip.exe",@0)<cr>
+vnoremap <leader>y y:call<space>system("clip.exe",@0)<cr>`>
+vnoremap y y`>
 "nnoremap <expr><leader>v (&paste == 0) ? ":set paste\<cr>" : ":set nopaste\<cr>"
 autocmd InsertLeave * set nopaste
-nnoremap <leader>v v<esc>a<cr><esc><bs>:r!powershell.exe<space>Get-Clipboard<cr>g<s-j>'<g<s-j>
+nnoremap <leader>v v<esc>:set<space>paste<cr>a<cr><esc><bs>:r!powershell.exe<space>Get-Clipboard<cr>g<s-j>'<g<s-j>
 
 
 "===== other =====
@@ -142,7 +186,6 @@ vnoremap v <esc>
 "nnoremap <c-l> <c-w>l
 nnoremap <c-l> <c-w>w
 nnoremap <c-h> <c-w>h
-nnoremap <leader>w 10<c-w><
 nnoremap <leader>p :PrettierAsync<cr>
 
 "===== dictionary =====

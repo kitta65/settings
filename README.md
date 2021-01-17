@@ -14,7 +14,7 @@ git remote set-url origin git@github.com:dr666m1/setting.git
 ```
 
 ## fishのインストール
-スクリプトはfish用に記載しているため、以下のスクリプト('init/fish.sh')でにインストール。完了したらシェルを再起動。
+スクリプトはfish用に記載しているため、以下のスクリプト('scripts/fish.sh')でにインストール。完了したらシェルを再起動。
 ```
 # install fish
 sudo apt-add-repository ppa:fish-shell/release-3
@@ -30,7 +30,7 @@ chsh -s $(which fish)
 ログを記録したい場合は以下のように実行
 ```
 mkdir -p ./log
-./init/init.fish 2>&1 | tee ./log/stdout_and_stderr.log
+./scripts/init.fish 2>&1 | tee ./log/stdout_and_stderr.log
 ```
 
 ## 設定事項

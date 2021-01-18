@@ -51,11 +51,11 @@ function MyRepl()
         elseif &filetype == "javascriptreact" || &filetype == "javascript"
             let g:myrepl_exit_command = ":T .exit\<cr>"
             let g:myrepl_current_status = &filetype
-            return ":T .node\<cr>"
+            return ":T node\<cr>"
         else
             let g:myrepl_exit_command = ":T exit\<cr>"
             let g:myrepl_current_status = "shell"
-            return ":T echo 'using common repl!'"
+            return ":T echo 'using common repl!'\<cr>"
         endif
     else
         if g:myrepl_current_status == "shell"
@@ -68,7 +68,7 @@ function MyRepl()
         endif
     endif
 endfunction
-nnoremap <leader>w :Ttoggle<cr>
+nnoremap <expr><leader>w g:myrepl_current_status == "none" ? MyRepl() : ":Ttoggle\<cr>"
 
 "===== coc.nvim =====
 inoremap <silent><expr> <tab> coc#expandableOrJumpable() ? "\<c-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<cr>" : "\<tab>"

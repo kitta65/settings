@@ -11,9 +11,10 @@ Plug 'aliva/vim-fish'
 Plug 'neoclide/vim-jsx-improve'
 Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build' }
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-Plug 'MattesGroeger/vim-bookmarks'
+Plug 'luochen1990/rainbow'
 Plug 'itchyny/lightline.vim'
 Plug 'preservim/nerdtree'
+"Plug 'frazrepo/vim-rainbow'
 call plug#end()
 
 "===== common =====
@@ -27,6 +28,10 @@ let NERDTreeQuitOnOpen = 1
 "===== theme =====
 colorscheme molokai
 highlight Comment ctermfg=22
+let g:rainbow_ctermfgs = ['lightblue', 'lightgreen', 'yellow', 'red', 'magenta']
+
+"===== vim-rainbow =====
+"let g:rainbow_active = 1
 
 "===== indentLine =====
 autocmd Filetype markdown,json,tex IndentLinesDisable
@@ -36,10 +41,13 @@ let g:neoterm_default_mod = 'vertical'
 let g:neoterm_autoscroll = 1
 let g:neoterm_auto_repl_cmd = 0
 tnoremap jj <c-\><c-n>
-nnoremap <leader>r :TREPLSendLine<cr><down>0
+nnoremap <expr><leader>r g:myrepl_current_status == "none" ?
+    \ MyRepl() : ":TREPLSendLine\<cr>\<down>0"
 nnoremap :: q:iT<space>
-vnoremap <leader>r :<c-u>TREPLSendSelection<cr>:T<space><c-v><cr><cr>`>
-autocmd Filetype javascript vnoremap <leader>r :<c-u>T<space>.editor<cr>:TREPLSendSelection<cr>:T<space><c-v><c-d><cr>`>
+vnoremap <expr><leader>r g:myrepl_current_status == "none" ?
+    \ MyRepl() : ":\<c-u>TREPLSendSelection\<cr>:T\<space>\<c-v>\<cr>\<cr>`>"
+autocmd Filetype javascript vnoremap <expr><leader>r g:myrepl_current_status == "none" ?
+    \ MyRepl() : ":\<c-u>T\<space>.editor\<cr>:TREPLSendSelection\<cr>:T\<space>\<c-v>\<c-d>\<cr>`>"
 nnoremap <expr><leader>t MyRepl()
 let g:myrepl_current_status = "none"
 function MyRepl()

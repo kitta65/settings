@@ -72,6 +72,8 @@ curl -LO https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
 unzip /path/to/ngrok.zip
 sudo mv ./ngrok /usr/local/bin
 
+#===== rust =====
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 #===== pyenv =====
 sudo apt -y install \

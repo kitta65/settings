@@ -3,6 +3,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
+Plug 'fannheyward/coc-rust-analyzer', {'do': 'yarn install --frozen-lockfile'}
 Plug 'kassio/neoterm'
 Plug 'tomasr/molokai'
 Plug 'yggdroot/indentLine'
@@ -14,7 +15,6 @@ Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'luochen1990/rainbow'
 Plug 'itchyny/lightline.vim'
 Plug 'preservim/nerdtree'
-"Plug 'frazrepo/vim-rainbow'
 call plug#end()
 
 "===== common =====

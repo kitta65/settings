@@ -74,6 +74,7 @@ sudo mv ./ngrok /usr/local/bin
 
 #===== rust =====
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+set -U fish_user_paths $HOME/.cargo/bin $fish_user_paths
 
 #===== pyenv =====
 sudo apt -y install \

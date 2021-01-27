@@ -12,9 +12,10 @@ Plug 'aliva/vim-fish'
 Plug 'neoclide/vim-jsx-improve'
 Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build' }
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-Plug 'luochen1990/rainbow'
+"Plug 'luochen1990/rainbow'
 Plug 'itchyny/lightline.vim'
 Plug 'preservim/nerdtree'
+Plug 'Vimjas/vim-python-pep8-indent'
 call plug#end()
 
 "===== common =====
@@ -28,10 +29,10 @@ let NERDTreeQuitOnOpen = 1
 "===== theme =====
 colorscheme molokai
 highlight Comment ctermfg=22
-let g:rainbow_ctermfgs = ['lightblue', 'lightgreen', 'yellow', 'red', 'magenta']
 
 "===== vim-rainbow =====
 "let g:rainbow_active = 1
+"let g:rainbow_ctermfgs = ['lightblue', 'lightgreen', 'yellow', 'red', 'magenta']
 
 "===== indentLine =====
 autocmd Filetype markdown,json,tex IndentLinesDisable

@@ -16,11 +16,13 @@ Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'itchyny/lightline.vim'
 Plug 'preservim/nerdtree'
 Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'rust-lang/rust.vim'
 call plug#end()
 
 "===== common =====
 let mapleader = "\<space>"
-
+syntax enable
+filetype plugin indent on
 "===== NERDTree =====
 nnoremap <leader>f :NERDTreeFocus<cr>
 let NERDTreeCustomOpenArgs = {'file': {'reuse': 'all', 'where': 't'}, 'dir': {}}
@@ -30,6 +32,8 @@ let NERDTreeQuitOnOpen = 1
 colorscheme molokai
 highlight Comment ctermfg=22
 
+"===== prettier =====
+autocmd Filetype rust nnoremap <buffer> <leader>p :RustFmt<cr>
 "===== vim-rainbow =====
 "let g:rainbow_active = 1
 "let g:rainbow_ctermfgs = ['lightblue', 'lightgreen', 'yellow', 'red', 'magenta']
@@ -47,7 +51,7 @@ nnoremap <expr><leader>r g:myrepl_current_status == "none" ?
 nnoremap :: q:iT<space>
 vnoremap <expr><leader>r g:myrepl_current_status == "none" ?
     \ MyRepl() : ":\<c-u>TREPLSendSelection\<cr>:T\<space>\<c-v>\<cr>\<cr>`>"
-autocmd Filetype javascript vnoremap <expr><leader>r g:myrepl_current_status == "none" ?
+autocmd Filetype javascript vnoremap <buffer> <expr><leader>r g:myrepl_current_status == "none" ?
     \ MyRepl() : ":\<c-u>T\<space>.editor\<cr>:TREPLSendSelection\<cr>:T\<space>\<c-v>\<c-d>\<cr>`>"
 nnoremap <expr><leader>t MyRepl()
 let g:myrepl_current_status = "none"
@@ -125,19 +129,19 @@ nnoremap <c-]> gt
 nnoremap <c-[> gT
 
 "===== quote & bracket =====
-noremap! ( ()<left>
+inoremap ( ()<left>
 tnoremap ( ()<left>
-noremap! { {}<left>
+inoremap { {}<left>
 tnoremap { {}<left>
-noremap! " ""<left>
+inoremap " ""<left>
 tnoremap " ""<left>
-noremap! ' ''<left>
+inoremap ' ''<left>
 tnoremap ' ''<left>
-noremap! [ []<left>
+inoremap [ []<left>
 tnoremap [ []<left>
-noremap! ` ``<left>
+inoremap ` ``<left>
 tnoremap ` ``<left>
-noremap! < <><left>
+inoremap < <><left>
 inoremap {<cr> {}<left><cr><esc><s-o>
 inoremap (<cr> ()<left><cr><esc><s-o>
 inoremap "<cr> ""<left><cr><esc><s-o>

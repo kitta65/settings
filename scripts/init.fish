@@ -1,5 +1,7 @@
 #!/usr/bin/env fish
-set -U setting_path (dirname (status filename))
+cd (dirname (status filename))
+cd ..
+set -U setting_path (pwd)
 sudo apt update
 sudo apt -y install \
     curl git vim zip unzip colordiff \
@@ -28,6 +30,7 @@ git config --global user.email $git_mail
 git config --global user.name $USER
 git config --global core.editor vim
 git config --global color.ui auto
+ln -s $setting_path/dotfiles/git $HOME/.config/git
 
 ##===== ssh =====
 mkdir -p $HOME/.ssh

@@ -17,16 +17,21 @@ Plug 'itchyny/lightline.vim'
 Plug 'preservim/nerdtree'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'rust-lang/rust.vim'
+Plug 'MattesGroeger/vim-bookmarks'
 call plug#end()
 
 "===== common =====
 let mapleader = "\<space>"
 syntax enable
 filetype plugin indent on
+
 "===== NERDTree =====
 nnoremap <leader>f :NERDTreeFocus<cr>
 let NERDTreeCustomOpenArgs = {'file': {'reuse': 'all', 'where': 't'}, 'dir': {}}
 let NERDTreeQuitOnOpen = 1
+
+"===== bookmarks =====
+let g:bookmark_auto_save = 0
 
 "===== theme =====
 colorscheme molokai

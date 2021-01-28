@@ -1,7 +1,6 @@
 #!/usr/bin/env fish
 cd (dirname (status filename))
-cd ..
-set -U setting_path (pwd)
+set -U dotfiles_path (string replace -r "scripts\$" 'dotfiles' (pwd))
 sudo apt update
 sudo apt -y install \
     curl git vim zip unzip colordiff \
@@ -11,8 +10,8 @@ mkdir -p ~/.tmp
 cd ~/.tmp
 
 #==== fish =====
-ln -s $setting_path/dotfiles/fish/functions ~/.config/fish/functions
-ln -s $setting_path/dotfiles/fish/config.fish ~/.config/fish/config.fish
+ln -s $dotfiles_path/fish/functions ~/.config/fish/functions
+ln -s $dotfiles_path/fish/config.fish ~/.config/fish/config.fish
 
 #===== wsl =====
 read -p 'echo -e "input your user name of windows\n: "' winuser
@@ -30,7 +29,7 @@ git config --global user.email $git_mail
 git config --global user.name $USER
 git config --global core.editor vim
 git config --global color.ui auto
-ln -s $setting_path/dotfiles/git $HOME/.config/git
+ln -s $dotfiles_path/git $HOME/.config/git
 
 ##===== ssh =====
 mkdir -p $HOME/.ssh
@@ -62,8 +61,8 @@ mkdir -p $HOME/.config/coc
 curl -L https://github.com/neovim/neovim/releases/download/v0.4.4/nvim.appimage > ~/.tmp/nvim.appimage
 chmod u+x ~/.tmp/nvim.appimage
 sudo mv ~/.tmp/nvim.appimage /usr/local/bin/nvim
-ln -s $setting_path/dotfiles/nvim $HOME/.config/nvim
-ln -s $setting_path/dotfiles/nvim/snip $HOME/.config/coc/ultisnips
+ln -s $dotfiles_path/nvim $HOME/.config/nvim
+ln -s $dotfiles_path/nvim/snip $HOME/.config/coc/ultisnips
 git config --global core.editor nvim
 
 # vim-plug

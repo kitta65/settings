@@ -3,16 +3,13 @@ call plug#begin('~/.vim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
-Plug 'fannheyward/coc-rust-analyzer', {'do': 'yarn install --frozen-lockfile'}
 Plug 'kassio/neoterm'
 Plug 'tomasr/molokai'
 Plug 'yggdroot/indentLine'
 Plug 'lervag/vimtex'
 Plug 'aliva/vim-fish'
 Plug 'neoclide/vim-jsx-improve'
-Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build' }
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-"Plug 'luochen1990/rainbow'
 Plug 'itchyny/lightline.vim'
 Plug 'preservim/nerdtree'
 Plug 'Vimjas/vim-python-pep8-indent'
@@ -38,13 +35,12 @@ colorscheme molokai
 highlight Comment ctermfg=22
 
 "===== prettier =====
+"autocmd Filetype rust nnoremap <buffer> <leader>p :%!rustfmt<cr>
 autocmd Filetype rust nnoremap <buffer> <leader>p :RustFmt<cr>
-"===== vim-rainbow =====
-"let g:rainbow_active = 1
-"let g:rainbow_ctermfgs = ['lightblue', 'lightgreen', 'yellow', 'red', 'magenta']
 
 "===== indentLine =====
 autocmd Filetype markdown,json,tex IndentLinesDisable
+autocmd Filetype markdown,json,tex set conceallevel=0
 
 "===== neoterm =====
 let g:neoterm_default_mod = 'vertical'
@@ -187,7 +183,8 @@ nnoremap <leader>v v<esc>:set<space>paste<cr>a<cr><esc><bs>:r!powershell.exe<spa
 nnoremap / /\v
 noremap! jj <esc>
 noremap! ｊｊ <esc>
-set number
+"set number
+"autocmd Filetype rust setlocal nonumber
 set list
 set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
 vnoremap i <s-i>

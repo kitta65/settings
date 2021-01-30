@@ -4,5 +4,5 @@
   "snippets": {
     "loadFromExtensions": false
   },
-  "python.jediEnabled": true
+  "python.jediEnabled": false
 }

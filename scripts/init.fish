@@ -78,6 +78,11 @@ sudo mv ./ngrok /usr/local/bin
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 set -U fish_user_paths $HOME/.cargo/bin $fish_user_paths
 
+#===== go =====
+curl -OL https://golang.org/dl/go1.15.7.linux-amd64.tar.gz
+sudo tar -C /usr/local -xzf go1.15.7.linux-amd64.tar.gz
+set -U fish_user_paths /usr/local/go/bin $fish_user_paths
+
 #===== pyenv =====
 sudo apt -y install \
     make build-essential zlib1g-dev libbz2-dev \

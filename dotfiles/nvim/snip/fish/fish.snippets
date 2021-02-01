@@ -4,7 +4,7 @@ cd (dirname (status filename))
 endsnippet
 
 snippet set_path
-set -Ux fish_user_paths $1 $fish_user_paths $0
+set -U fish_user_paths $1 $fish_user_paths$0
 endsnippet
 
 snippet set_path_drop

@@ -43,17 +43,18 @@ sudo mv ./exa-linux-x86_64 /usr/local/bin/exa
 set -Ux EXA_COLORS "da=1;35"
 
 #===== nodejs (via n) =====
+sudo apt -y install make
 curl -L https://git.io/n-install | bash
 set -Ux N_PREFIX $HOME/n
 set -U fish_user_paths $N_PREFIX/bin $fish_user_paths
 # yarn
 npm install -g yarn
-set -Ux fish_user_paths $HOME/.yarn/bin $fish_user_paths
+set -U fish_user_paths $HOME/.yarn/bin $fish_user_paths
 # serve
 yarn global add serve
 
 #===== clasp =====
-sudo npm install -g @google/clasp
+npm install -g @google/clasp
 # https://github.com/google/clasp/issues/736
 
 #===== nvim =====
@@ -71,7 +72,7 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 
 #===== ngrok =====
 curl -LO https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
-unzip /path/to/ngrok.zip
+unzip ~/.tmp/ngrok-stable-linux-amd64.zip
 sudo mv ./ngrok /usr/local/bin
 
 #===== rust =====

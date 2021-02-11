@@ -1,5 +1,5 @@
 # 概要
-オレオレ環境構築スクリプト。いったんはWSL2（Ubuntu-18.04・Debian）を想定。
+オレオレ環境構築スクリプト。いったんWSL2（Ubuntu-18.04・Ubuntu-20.04・Debian）を想定。
 
 # 準備
 ## リポジトリのclone
@@ -29,13 +29,11 @@ chsh -s $(which fish)
 ## 実行方法
 ログを記録したい場合は以下のように実行
 ```
-mkdir -p ./log
-./scripts/init.fish 2>&1 | tee ./log/stdout_and_stderr.log
+./scripts/init.fish 2>&1 | tee ./stdout_and_stderr.log
 ```
 
 ## 設定事項
 - curl, zip, exaなど基本的なコマンド群のインストール
-- 自作ツールの設定（watcherなど）
 - mecabのインストール
 - fishの設定（functionsなど）
 - wsl2の設定
@@ -45,6 +43,8 @@ mkdir -p ./log
 - claspのインストール（利用前に[APIの有効化](https://script.google.com/home/usersettings)が必要）
 - neovimのインストール
 - pyenvのインストール
+- rustのインストール
+- goのインストール
 - google-cloud-sdkのインストール
 
 ## 追加対応
@@ -66,11 +66,9 @@ pyenv global $ver
 ```
 pip install pynvim python-language-server
 ```
-初回はnvim内で`:PlugInstall!`を実行する必要がある。`:CocInstall coc-dictionary`だけvim-plugで管理できないので個別に実行。
-
-もし毎回pylintがインストールされていないと表示されるなら、`:CocCommand python.setLinter`を試す。
-
-pyenvのpython環境が反映されないなら`:CocCommand python.setInterpreter`を試す。
+初回はnvim内で`:PlugInstall!`を実行する必要がある。
+もし[coc-dictionary](https://github.com/neoclide/coc-sources)が必要なら個別にインストール（VimPlugで管理できない）。
+Python関連で困ったら`:CocCommand python.setLinter` `:CocCommand python.setInterpreter`を試す。
 
 ### omf
 omfやそのテーマを使いたければ、以下のように実行する。

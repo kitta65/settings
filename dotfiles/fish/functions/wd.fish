@@ -1,7 +1,7 @@
 function wd
-    if test -n "$WKDIR"
-        cd "$WKDIR"
+    if test -n "$wkdir"
+        cd "$wkdir"
     else
-        echo 'cannot find "$WKDIR"'
+        echo 'cannot find "$wkdir"'
     end
 end

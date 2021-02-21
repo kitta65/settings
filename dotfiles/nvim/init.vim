@@ -15,6 +15,7 @@ Plug 'preservim/nerdtree'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'rust-lang/rust.vim'
 Plug 'MattesGroeger/vim-bookmarks'
+Plug 'fannheyward/coc-rust-analyzer', { 'do': 'yarn install' }
 call plug#end()
 
 "===== common =====
@@ -26,6 +27,7 @@ filetype plugin indent on
 nnoremap <leader>f :NERDTreeFocus<cr>
 let NERDTreeCustomOpenArgs = {'file': {'reuse': 'all', 'where': 't'}, 'dir': {}}
 let NERDTreeQuitOnOpen = 1
+let NERDTreeShowHidden=1
 
 "===== bookmarks =====
 let g:bookmark_auto_save = 0
@@ -169,21 +171,15 @@ vnoremap <! :<c-u>call<space>MyQuote("<!-- ", " -->")<cr>
 vnoremap q <esc>:MyQuote<space>
 
 "===== yank & paste =====
-nnoremap <leader>a :silent w !clip.exe<cr>
-nnoremap <leader>d :!echo<space>%:p<space>\|<space>sed<space>"s/\/mnt\/c\//C:/"<space>\|<space>clip.exe<cr><cr>
-"i don't know why, but `silent` doesn't work in `<leader>d`
-vnoremap <leader>y y:call<space>system("clip.exe",@0)<cr>`>
-vnoremap y y`>
 "nnoremap <expr><leader>v (&paste == 0) ? ":set paste\<cr>" : ":set nopaste\<cr>"
 autocmd InsertLeave * set nopaste
-nnoremap <leader>v v<esc>:set<space>paste<cr>a<cr><esc><bs>:r!powershell.exe<space>Get-Clipboard<cr>g<s-j>'<g<s-j>
-
+vnoremap y y`>
 
 "===== other =====
 nnoremap / /\v
 noremap! jj <esc>
 noremap! ｊｊ <esc>
-"set number
+set number
 "autocmd Filetype rust setlocal nonumber
 set list
 set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%

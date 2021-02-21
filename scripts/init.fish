@@ -29,6 +29,7 @@ git config --global user.email $git_mail
 git config --global user.name $USER
 git config --global core.editor vim
 git config --global color.ui auto
+git config --global core.pager "LESSCHARSET=utf-8 less"
 ln -s $dotfiles_path/git $HOME/.config/git
 
 ##===== ssh =====

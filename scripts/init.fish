@@ -9,6 +9,9 @@ sudo apt -y install \
 mkdir -p ~/.tmp
 cd ~/.tmp
 
+#===== local =====
+sudo update-locale LANG=en_US.UTF-8
+
 #==== fish =====
 ln -s $dotfiles_path/fish/functions ~/.config/fish/functions
 ln -s $dotfiles_path/fish/config.fish ~/.config/fish/config.fish

@@ -47,9 +47,14 @@ union all select 20, null,   20$0
 endsnippet
 
 snippet init
+#standardSQL
 create temp function start_date() as (date '`date "+%Y-%m-%d"`');
 create temp function start_date_str(format string) as (
 	format_date(format, start_date())
+);
+create temp function end_date() as (date '`date "+%Y-%m-%d"`');
+create temp function end_date_str(format string) as (
+	format_date(format, end_date())
 );$0
 endsnippet
 

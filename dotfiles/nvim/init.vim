@@ -127,7 +127,7 @@ nnoremap <expr>0 My0()
 vnoremap <expr>0 My0()
 
 "===== tab =====
-"nnoremap <leader>t :tabnew<cr>:e<space>.<cr>
+nnoremap <leader>n :tabnew<cr>
 nnoremap <c-]> gt
 nnoremap <c-[> gT
 
@@ -180,7 +180,6 @@ nnoremap / /\v
 noremap! jj <esc>
 noremap! ｊｊ <esc>
 set number
-"autocmd Filetype rust setlocal nonumber
 set list
 set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
 vnoremap i <s-i>

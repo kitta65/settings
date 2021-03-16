@@ -51,7 +51,7 @@ let g:neoterm_auto_repl_cmd = 0
 tnoremap jj <c-\><c-n>
 nnoremap <expr><leader>r g:myrepl_current_status == "none" ?
     \ MyRepl() : ":TREPLSendLine\<cr>\<down>0"
-nnoremap :: q:iT<space>
+"nnoremap :: q:iT<space>
 vnoremap <expr><leader>r g:myrepl_current_status == "none" ?
     \ MyRepl() : ":\<c-u>TREPLSendSelection\<cr>:T\<space>\<c-v>\<cr>\<cr>`>"
 autocmd Filetype javascript vnoremap <buffer> <expr><leader>r g:myrepl_current_status == "none" ?
@@ -171,7 +171,6 @@ vnoremap <! :<c-u>call<space>MyQuote("<!-- ", " -->")<cr>
 vnoremap q <esc>:MyQuote<space>
 
 "===== yank & paste =====
-"nnoremap <expr><leader>v (&paste == 0) ? ":set paste\<cr>" : ":set nopaste\<cr>"
 autocmd InsertLeave * set nopaste
 vnoremap y y`>
 
@@ -188,12 +187,15 @@ vnoremap v <esc>
 "nnoremap <c-l> <c-w>l
 nnoremap <c-l> <c-w>w
 nnoremap <c-h> <c-w>h
-nnoremap <leader>p :PrettierAsync<cr>
+function MyPrettier()
+    let l:current_line = line(".")
+    return ":%!npx prettier --stdin-filepath %" . l:current_line . "G"
+endfunction
 "PrettierAsync is maybe better but cannot be used with vim-bookmarks
-nnoremap <leader>p :%!npx prettier --stdin-filepath %<cr>
+nnoremap <expr><leader>p MyPrettier()
 
 "===== dictionary =====
-autocmd Filetype * execute 'setlocal dictionary+=~/.setting/dotfiles/nvim/dict/' . &filetype . '.txt'
+"autocmd Filetype * execute 'setlocal dictionary+=~/.setting/dotfiles/nvim/dict/' . &filetype . '.txt'
 
 "===== local_setting =====
 runtime ./init_local.vim

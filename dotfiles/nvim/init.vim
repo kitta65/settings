@@ -189,6 +189,8 @@ vnoremap v <esc>
 nnoremap <c-l> <c-w>w
 nnoremap <c-h> <c-w>h
 nnoremap <leader>p :PrettierAsync<cr>
+"PrettierAsync is maybe better but cannot be used with vim-bookmarks
+nnoremap <leader>p :%!npx prettier --stdin-filepath %<cr>
 
 "===== dictionary =====
 autocmd Filetype * execute 'setlocal dictionary+=~/.setting/dotfiles/nvim/dict/' . &filetype . '.txt'

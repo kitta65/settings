@@ -3,7 +3,7 @@ cd (dirname (status filename))
 set -U dotfiles_path (string replace -r "scripts\$" 'dotfiles' (pwd))
 sudo apt update
 sudo apt -y install \
-    curl git vim zip unzip colordiff \
+    curl git vim zip unzip colordiff bat \
     mecab libmecab-dev mecab-ipadic-utf8 \
     fuse
 mkdir -p ~/.tmp

@@ -189,9 +189,9 @@ nnoremap <c-l> <c-w>w
 nnoremap <c-h> <c-w>h
 function MyPrettier()
     let l:current_line = line(".")
-    return ":%!npx prettier --stdin-filepath %" . l:current_line . "G"
+    return "o\<esc>dd:%!npx prettier --stdin-filepath %" . l:current_line . "G"
 endfunction
-"PrettierAsync is maybe better but cannot be used with vim-bookmarks
+"PrettierAsync may be better but cannot be used with vim-bookmarks
 nnoremap <expr><leader>p MyPrettier()
 
 "===== dictionary =====

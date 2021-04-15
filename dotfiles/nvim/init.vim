@@ -39,6 +39,12 @@ highlight Comment ctermfg=22
 "===== prettier =====
 "autocmd Filetype rust nnoremap <buffer> <leader>p :%!rustfmt<cr>
 autocmd Filetype rust nnoremap <buffer> <leader>p :RustFmt<cr>
+function MyPrettier()
+    let l:current_line = line(".")
+    return "o\<esc>dd:%!npx prettier --stdin-filepath %" . l:current_line . "G"
+endfunction
+"PrettierAsync may be better but cannot be used with vim-bookmarks
+nnoremap <expr><leader>p MyPrettier()
 
 "===== indentLine =====
 autocmd Filetype markdown,json,tex IndentLinesDisable
@@ -61,21 +67,21 @@ let g:myrepl_current_status = "none"
 function MyRepl()
     if g:myrepl_current_status == "none"
         if &filetype == "python"
-            let g:myrepl_exit_command = ":T exit()\<cr>"
+            let g:myrepl_exit_command = ":T \<c-v>\<c-c>exit()\<cr>"
             let g:myrepl_current_status = &filetype
             return ":T ipython --no-autoindent\<cr>"
         elseif &filetype == "javascriptreact" || &filetype == "javascript"
-            let g:myrepl_exit_command = ":T .exit\<cr>"
+            let g:myrepl_exit_command = ":T \<c-v>\<c-c>.exit\<cr>"
             let g:myrepl_current_status = &filetype
             return ":T node\<cr>"
         else
-            let g:myrepl_exit_command = ":T exit\<cr>"
+            let g:myrepl_exit_command = ":T \<c-v>\<c-c>exit\<cr>"
             let g:myrepl_current_status = "shell"
             return ":T echo 'using common repl!'\<cr>"
         endif
     else
         if g:myrepl_current_status == "shell"
-            let g:myrepl_exit_command = ":T exit\<cr>"
+            let g:myrepl_exit_command = ":T \<c-v>\<c-c>exit\<cr>"
             let g:myrepl_current_status = "none"
             return g:myrepl_exit_command
         else
@@ -187,12 +193,6 @@ vnoremap v <esc>
 "nnoremap <c-l> <c-w>l
 nnoremap <c-l> <c-w>w
 nnoremap <c-h> <c-w>h
-function MyPrettier()
-    let l:current_line = line(".")
-    return "o\<esc>dd:%!npx prettier --stdin-filepath %" . l:current_line . "G"
-endfunction
-"PrettierAsync may be better but cannot be used with vim-bookmarks
-nnoremap <expr><leader>p MyPrettier()
 
 "===== dictionary =====
 "autocmd Filetype * execute 'setlocal dictionary+=~/.setting/dotfiles/nvim/dict/' . &filetype . '.txt'

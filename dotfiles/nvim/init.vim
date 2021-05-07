@@ -3,6 +3,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 Plug 'kassio/neoterm'
 Plug 'tomasr/molokai'
 Plug 'yggdroot/indentLine'
@@ -34,7 +35,7 @@ let g:bookmark_auto_save = 0
 
 "===== theme =====
 colorscheme molokai
-highlight Comment ctermfg=22
+highlight Comment ctermfg=34
 
 "===== prettier =====
 "autocmd Filetype rust nnoremap <buffer> <leader>p :%!rustfmt<cr>
@@ -75,13 +76,13 @@ function MyRepl()
             let g:myrepl_current_status = &filetype
             return ":T node\<cr>"
         else
-            let g:myrepl_exit_command = ":T \<c-v>\<c-c>exit\<cr>"
+            let g:myrepl_exit_command = ":T \<c-v>\<c-a>\<c-v>\<c-k>exit\<cr>"
             let g:myrepl_current_status = "shell"
             return ":T echo 'using common repl!'\<cr>"
         endif
     else
         if g:myrepl_current_status == "shell"
-            let g:myrepl_exit_command = ":T \<c-v>\<c-c>exit\<cr>"
+            let g:myrepl_exit_command = ":T \<c-v>\<c-a>\<c-v>\<c-k>exit\<cr>"
             let g:myrepl_current_status = "none"
             return g:myrepl_exit_command
         else

@@ -18,6 +18,7 @@ ln -s $dotfiles_path/fish/config.fish ~/.config/fish/config.fish
 
 #===== wsl =====
 read -p 'echo -e "input your user name of windows\n: "' winuser
+set -U winuser $winuser
 echo -e "[interop]\nappendWindowsPath = false" | sudo tee /etc/wsl.conf
 set -U fish_user_paths /mnt/c/WINDOWS/system32 $fish_user_paths
 set -U fish_user_paths /mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0 $fish_user_paths

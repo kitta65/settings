@@ -1,22 +1,28 @@
 "===== vim-plug =====
 call plug#begin('~/.vim/plugged')
+"common
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+Plug 'itchyny/lightline.vim'
 Plug 'kassio/neoterm'
+Plug 'MattesGroeger/vim-bookmarks'
+Plug 'preservim/nerdtree'
+Plug 'prettier/vim-prettier', {'do': 'yarn install --frozen-lockfile'}
 Plug 'tomasr/molokai'
 Plug 'yggdroot/indentLine'
-Plug 'lervag/vimtex'
-Plug 'aliva/vim-fish'
-Plug 'neoclide/vim-jsx-improve'
-Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-Plug 'itchyny/lightline.vim'
-Plug 'preservim/nerdtree'
+"python
+Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
 Plug 'Vimjas/vim-python-pep8-indent'
+"js, ts
+Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/vim-jsx-improve'
+"rust
+Plug 'fannheyward/coc-rust-analyzer', {'do': 'yarn install --frozen-lockfile'}
 Plug 'rust-lang/rust.vim'
-Plug 'MattesGroeger/vim-bookmarks'
-Plug 'fannheyward/coc-rust-analyzer', { 'do': 'yarn install' }
+"other
+Plug 'aliva/vim-fish'
+Plug 'lervag/vimtex'
 call plug#end()
 
 "===== common =====

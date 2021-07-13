@@ -27,8 +27,9 @@ call plug#end()
 
 "===== common =====
 let mapleader = "\<space>"
-syntax enable
+syntax on
 filetype plugin indent on
+set cursorline
 
 "===== NERDTree =====
 nnoremap <leader>f :NERDTreeFocus<cr>

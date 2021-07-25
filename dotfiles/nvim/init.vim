@@ -108,6 +108,16 @@ let g:coc_snippet_prev = '<s-tab>'
 nnoremap <leader>s :tabedit<space>%<cr>:CocCommand snippets.openSnippetFiles<cr>
 "mapping <cr> to <c-y> is recommended, but i don't like it
 "inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
 
 "===== move cursor =====
 noremap! <c-h> <left>

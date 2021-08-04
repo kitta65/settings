@@ -10,6 +10,11 @@
       "command": "bash-language-server",
       "args": ["start"],
       "filetypes": ["sh"]
+    },
+    "sql": {
+      "command": "bq-language-server",
+      "args": ["--stdio"],
+      "filetypes": ["sql", "bq"]
     }
   }
 }

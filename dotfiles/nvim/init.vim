@@ -178,6 +178,8 @@ tnoremap [ []<left>
 inoremap ` ``<left>
 tnoremap ` ``<left>
 inoremap < <><left>
+inoremap <<space> <<space>
+inoremap <= <=
 inoremap {<cr> {}<left><cr><esc><s-o>
 inoremap (<cr> ()<left><cr><esc><s-o>
 inoremap "<cr> ""<left><cr><esc><s-o>

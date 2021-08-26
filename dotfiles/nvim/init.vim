@@ -11,7 +11,7 @@ Plug 'prettier/vim-prettier', {'do': 'yarn install --frozen-lockfile'}
 Plug 'tomasr/molokai'
 Plug 'yggdroot/indentLine'
 "python
-Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
+Plug 'fannheyward/coc-pyright', {'do': 'yarn install --frozen-lockfile'}
 Plug 'Vimjas/vim-python-pep8-indent'
 "js, ts
 Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
@@ -22,7 +22,6 @@ Plug 'fannheyward/coc-rust-analyzer', {'do': 'yarn install --frozen-lockfile'}
 Plug 'rust-lang/rust.vim'
 "other
 Plug 'aliva/vim-fish'
-Plug 'lervag/vimtex'
 call plug#end()
 
 "===== common =====
@@ -31,6 +30,7 @@ syntax on
 autocmd Filetype rust,javascriptreact,bq,sql syntax sync minlines=10000
 filetype plugin indent on
 set cursorline
+let g:python3_host_prog = '$HOME/.pyenv/shims/python'
 
 "===== NERDTree =====
 nnoremap <leader>f :NERDTreeFocus<cr>
@@ -165,27 +165,24 @@ nnoremap <c-]> gt
 nnoremap <c-[> gT
 
 "===== quote & bracket =====
-inoremap ( ()<left>
-tnoremap ( ()<left>
-inoremap { {}<left>
-tnoremap { {}<left>
-inoremap " ""<left>
-tnoremap " ""<left>
-inoremap ' ''<left>
-tnoremap ' ''<left>
-inoremap [ []<left>
-tnoremap [ []<left>
-inoremap ` ``<left>
-tnoremap ` ``<left>
-inoremap < <><left>
+inoremap ( )<left>(
+tnoremap ( )<left>(
+inoremap { }<left>{
+tnoremap { }<left>{
+inoremap " "<left>"
+tnoremap " "<left>"
+inoremap ' '<left>'
+tnoremap ' '<left>'
+inoremap [ ]<left>[
+tnoremap [ ]<left>[
+inoremap ` `<left>`
+tnoremap ` `<left>`
+inoremap < ><left><
 inoremap <<space> <<space>
 inoremap <= <=
 inoremap {<cr> {}<left><cr><esc><s-o>
 inoremap (<cr> ()<left><cr><esc><s-o>
-inoremap "<cr> ""<left><cr><esc><s-o>
-inoremap '<cr> ''<left><cr><esc><s-o>
 inoremap [<cr> []<left><cr><esc><s-o>
-inoremap `<cr> ``<left><cr><esc><s-o>
 command -nargs=* MyQuote call MyQuote(<f-args>)
 function MyQuote(l, ...)
     let l:r = get(a:000, 0, a:l)

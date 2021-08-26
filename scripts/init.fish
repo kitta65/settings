@@ -14,7 +14,7 @@ sudo update-locale LANG=en_US.UTF-8
 
 #==== fish =====
 ln -s $dotfiles_path/fish/functions ~/.config/fish/functions
-ln -s $dotfiles_path/fish/config.fish ~/.config/fish/config.fish
+l/usr/bin/pytho3n -s $dotfiles_path/fish/config.fish ~/.config/fish/config.fish
 
 #===== wsl =====
 read -p 'echo -e "input your user name of windows\n: "' winuser
@@ -99,6 +99,11 @@ sudo apt -y install \
 
 curl https://pyenv.run | bash
 set -U fish_user_paths $HOME/.pyenv/bin $fish_user_paths
+
+#===== poetry =====
+curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+mkdir -p ~/.config/fish/completions
+poetry completions fish > ~/.config/fish/completions/poetry.fish
 
 #===== gcp =====
 sudo apt update

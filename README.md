@@ -64,11 +64,9 @@ pyenv global $ver
 
 ### neovim
 ```
-pip install pynvim python-language-server
+pip install pynvim
 ```
 初回はnvim内で`:PlugInstall!`を実行する必要がある。
-もし[coc-dictionary](https://github.com/neoclide/coc-sources)が必要なら個別にインストール（VimPlugで管理できない）。
-Python関連で困ったら`:CocCommand python.setLinter` `:CocCommand python.setInterpreter`を試す。
 
 ### omf
 omfやそのテーマを使いたければ、以下のように実行する。

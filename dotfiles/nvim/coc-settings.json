@@ -4,7 +4,6 @@
   "snippets": {
     "loadFromExtensions": false
   },
-  "python.jediEnabled": false,
   "languageserver": {
     "bash": {
       "command": "bash-language-server",
@@ -16,5 +15,7 @@
       "args": ["--stdio"],
       "filetypes": ["sql", "bq"]
     }
-  }
+  },
+  // https://github.com/rust-analyzer/rust-analyzer/issues/6905#issuecomment-746841097
+  "diagnostic.messageDelay": 200
 }

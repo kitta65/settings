@@ -6,7 +6,9 @@ endsnippet
 
 snippet if
 if [[ $1 ]]; then
-	${0::}
+	${0}
+else
+	:
 fi
 endsnippet
 
@@ -19,13 +21,21 @@ bq load ${1:--autodetect }--skip_leading_rows ${2:0} ${3:project:}${4:dataset.}$
 endsnippet
 
 snippet getopts
-while getopts ${1:a:} OPT; do
+while getopts ${1:a:bc} OPT; do
 	case $OPT in
-		${2:a} )
-			${0:echo $OPTARG}
+		a )
+			echo $OPTARG
+			${0}
 		;;
-		\? ) exit 1;;
+		b ) exit 1;;
+		c ) exit 1;;
 	esac
 done
+shift $(($OPTIND - 1))
 endsnippet
-# https://docs.oracle.com/cd/E86824_01/html/E54763/getopts-1.html
+
+snippet #
+#------------------------------
+# ${0}
+#------------------------------
+endsnippet

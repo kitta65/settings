@@ -50,11 +50,19 @@ zstyle :prompt:pure:prompt:success color green
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # alias
-alias cat='bat'
+if which batcat > /dev/null; then
+  alias cat='batcat'
+fi
 alias code='/mnt/c/Users/$WINUSER/AppData/Local/Programs/Microsoft\ VS\ Code/bin/code'
-alias ll='exa -lha'
-alias tree='exa -T'
-alias v='nvim'
+if which exa > /dev/null; then
+  alias ll='exa -lha'
+  alias tree='exa -T'
+fi
+if which nvim > /dev/null; then
+  alias v='nvim'
+else
+  alias v='vim'
+fi
 alias yyyymmdd='date "+%Y%m%d"'
 
 #-----------------------------
@@ -82,4 +90,8 @@ export EXA_COLORS="da=1;35"
 #-----------------------------
 export PATH=$PATH:/mnt/c/WINDOWS/system32
 export PATH=$PATH:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0
-export WINUSER=$(powershell.exe '$env:UserName' | tr -d '')
+if which powershell.exe > /dev/null; then
+  # only if your are using wsl
+  export WINUSER=$(powershell.exe '$env:UserName' | tr -d '')
+fi
+

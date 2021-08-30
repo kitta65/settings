@@ -1,8 +1,18 @@
 #!/bin/bash
 cd $(dirname $0)/..
 PROJECT_ROOT=$(pwd)
+WINUSER=$(powershell.exe '$env:UserName' | tr -d '')
 
 sudo apt update
+sudo apt install bat
+
+#------------------------------
+# exa
+#------------------------------
+
+curl -L https://github.com/ogham/exa/releases/download/v0.9.0/exa-linux-x86_64-0.9.0.zip > ~/.tmp/exa-linux-x86_64-0.9.0.zip
+unzip ~/.tmp/exa-linux-x86_64-0.9.0.zip
+sudo mv ./exa-linux-x86_64 /usr/local/bin/exa
 
 #------------------------------
 # zsh
@@ -14,13 +24,23 @@ chsh -s $(which zsh)
 # initialize
 mkdir -p "$HOME/.zsh"
 rm -rf $HOME/.zsh/*
-rm $HOME/.zshrc
+rm $HOME/.zprofile $HOME/.zshrc
 
-# .zshrc
+# .zprofile, .zshrc
 ln -s $PROJECT_ROOT/dotfiles/zsh/.zshrc $HOME/.zshrc
+ln -s $PROJECT_ROOT/dotfiles/zsh/.zprofile $HOME/.zprofile
 
 # zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.zsh/zsh-autosuggestions
 
 # pure
 git clone https://github.com/sindresorhus/pure.git $HOME/.zsh/pure
+
+#------------------------------
+# wsl
+#------------------------------
+
+echo -e "[interop]\nappendWindowsPath = false" | sudo tee /etc/wsl.conf
+echo '[wsl2]
+localhostForwarding=True
+memory=4GB' > /mnt/c/Users/$WINUSER/.wslconfig

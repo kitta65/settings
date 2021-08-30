@@ -1,5 +1,5 @@
 #-----------------------------
-# default settings
+# default
 #-----------------------------
 
 setopt histignorealldups sharehistory
@@ -36,7 +36,7 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 #-----------------------------
-# my own settings
+# common
 #-----------------------------
 
 # prompt (pure)
@@ -49,10 +49,37 @@ zstyle :prompt:pure:prompt:success color green
 # auto suggestions
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-#-----------------------------
 # alias
-#-----------------------------
-
+alias cat='bat'
+alias code='/mnt/c/Users/$WINUSER/AppData/Local/Programs/Microsoft\ VS\ Code/bin/code'
 alias ll='exa -lha'
 alias tree='exa -T'
 alias v='nvim'
+alias yyyymmdd='date "+%Y%m%d"'
+
+#-----------------------------
+# node
+#-----------------------------
+
+export PATH=$PATH:$HOME/n/bin
+
+#-----------------------------
+# python
+#-----------------------------
+
+# pyenv
+eval "$(pyenv init -)"
+
+
+#-----------------------------
+# exa
+#-----------------------------
+export EXA_COLORS="da=1;35"
+
+
+#-----------------------------
+# wsl
+#-----------------------------
+export PATH=$PATH:/mnt/c/WINDOWS/system32
+export PATH=$PATH:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0
+export WINUSER=$(powershell.exe '$env:UserName' | tr -d '')

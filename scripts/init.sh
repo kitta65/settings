@@ -18,8 +18,8 @@ chsh -s $(which zsh)
 
 # initialize
 mkdir -p "$HOME/.zsh"
-rm -rf $HOME/.zsh/*
-rm $HOME/.zprofile $HOME/.zshrc
+rm -rf $HOME/.zsh/* &> /dev/null
+rm $HOME/.zprofile $HOME/.zshrc &> /dev/null
 
 # .zprofile, .zshrc
 ln -s $PROJECT_ROOT/dotfiles/zsh/.zshrc $HOME/.zshrc

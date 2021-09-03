@@ -54,7 +54,7 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 if which batcat > /dev/null; then
   alias cat='batcat'
 fi
-alias code='/mnt/c/Users/$WINUSER/AppData/Local/Programs/Microsoft\ VS\ Code/bin/code'
+alias code='setWinUser;/mnt/c/Users/$WINUSER/AppData/Local/Programs/Microsoft\ VS\ Code/bin/code'
 if which exa > /dev/null; then
   alias ll='exa -lha'
   alias tree='exa -T'
@@ -91,8 +91,9 @@ export EXA_COLORS="da=1;35"
 #-----------------------------
 export PATH=$PATH:/mnt/c/WINDOWS/system32
 export PATH=$PATH:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0
-if which powershell.exe > /dev/null; then
-  # only if your are using wsl
-  export WINUSER=$(powershell.exe '$env:UserName' | tr -d '')
-fi
-
+function setWinUser() {
+  # NOTE
+  # It is not a good idea to run `powershell.exe` every time.
+  # It will take a lot of time.
+  export WINUSER=$(powershell.exe '$env:UserName' | tr -d "")
+}

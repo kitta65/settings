@@ -1,6 +1,7 @@
 #!/bin/bash
 cd $(dirname $0)/..
 PROJECT_ROOT=$(pwd)
+mkdir -p $HOME/.tmp
 
 # in the case of WindowsPath is not appended
 export PATH=$PATH:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0
@@ -34,7 +35,6 @@ git clone https://github.com/sindresorhus/pure.git $HOME/.zsh/pure
 #------------------------------
 # wsl
 #------------------------------
-
 echo -e "[interop]\nappendWindowsPath = false" | sudo tee /etc/wsl.conf
 echo '[wsl2]
 localhostForwarding=True
@@ -43,8 +43,16 @@ memory=4GB' > /mnt/c/Users/$WINUSER/.wslconfig
 #------------------------------
 # exa
 #------------------------------
-
 curl -L https://github.com/ogham/exa/releases/download/v0.9.0/exa-linux-x86_64-0.9.0.zip > ~/.tmp/exa-linux-x86_64-0.9.0.zip
 unzip ~/.tmp/exa-linux-x86_64-0.9.0.zip
 sudo mv ./exa-linux-x86_64 /usr/local/bin/exa
+
+#------------------------------
+# nodejs
+#------------------------------
+if [ ! -d $HOME/n ]; then
+  curl -L https://git.io/n-install | bash
+fi
+npm install -g yarn
+yarn global add serve
 

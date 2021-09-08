@@ -5,16 +5,16 @@
     "loadFromExtensions": false
   },
   "languageserver": {
-    "bash": {
-      "command": "bash-language-server",
-      "args": ["start"],
-      "filetypes": ["sh"]
-    },
-    "sql": {
-      "command": "bq-language-server",
-      "args": ["--stdio"],
-      "filetypes": ["sql", "bq"]
-    }
+    //"bash": {
+    //  "command": "bash-language-server",
+    //  "args": ["start"],
+    //  "filetypes": ["sh"]
+    //},
+    //"bigquery": {
+    //  "command": "bq-language-server",
+    //  "args": ["--stdio"],
+    //  "filetypes": ["sql", "bq"]
+    //}
   },
   // https://github.com/rust-analyzer/rust-analyzer/issues/6905#issuecomment-746841097
   "diagnostic.messageDelay": 200

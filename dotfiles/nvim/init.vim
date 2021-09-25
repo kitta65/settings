@@ -20,8 +20,7 @@ Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/vim-jsx-improve'
 "rust
-Plug 'fannheyward/coc-rust-analyzer', {'do': 'yarn install --frozen-lockfile'}
-Plug 'rust-lang/rust.vim'
+Plug 'neoclide/coc-rls', {'do': 'yarn install --frozen-lockfile'}
 "other
 Plug 'aliva/vim-fish'
 call plug#end()

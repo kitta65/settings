@@ -1,21 +1,15 @@
 {
   "coc.source.around.firstMatch": false,
   "coc.source.buffer.firstMatch": false,
+  "coc.preferences.formatOnSaveFiletypes": ["rust"],
   "snippets": {
     "loadFromExtensions": false
   },
   "languageserver": {
-    //"bash": {
-    //  "command": "bash-language-server",
-    //  "args": ["start"],
-    //  "filetypes": ["sh"]
-    //},
-    //"bigquery": {
-    //  "command": "bq-language-server",
-    //  "args": ["--stdio"],
-    //  "filetypes": ["sql", "bq"]
-    //}
-  },
-  // https://github.com/rust-analyzer/rust-analyzer/issues/6905#issuecomment-746841097
-  "diagnostic.messageDelay": 200
+    "bigquery": {
+      "command": "bq-language-server",
+      "args": ["--stdio"],
+      "filetypes": ["sql", "bq"]
+    }
+  }
 }

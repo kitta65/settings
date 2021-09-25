@@ -64,6 +64,22 @@ if which nvim > /dev/null; then
 else
   alias v='vim'
 fi
+if which docker > /dev/null; then
+  alias dca='docker container attach'
+  alias dce='docker container exec'
+  alias dcl='docker container ls'
+  alias dcr='docker container run -it --rm'
+  alias dib='docker image build'
+  alias dil='docker image ls'
+  alias rstudio='\
+    mkdir -p $HOME/.renv; \
+    docker container run \
+      -e DISABLE_AUTH=true -e RENV_PATHS_ROOT=/renv \
+      -p 8787:8787 \
+      -v $HOME/.renv:/renv -v $(pwd):/home/rstudio/project \
+      rocker/rstudio:4.0.0'
+  alias tmp='pwd'
+fi
 alias yyyymmdd='date "+%Y%m%d"'
 
 #-----------------------------

@@ -9,7 +9,14 @@
     "bigquery": {
       "command": "bq-language-server",
       "args": ["--stdio"],
-      "filetypes": ["sql", "bq"]
+      "filetypes": ["sql", "bq"],
+      "settings": {
+        "bqExtensionVSCode": {
+          "diagnostic": {
+            "forVSCode": false
+          }
+        }
+      }
     }
   }
 }

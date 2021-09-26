@@ -55,4 +55,12 @@ if [ ! -d $HOME/n ]; then
 fi
 npm install -g yarn
 yarn global add serve
+#------------------------------
+# python
+#------------------------------
+
+# poetry
+if [ ! -e $HOME/.local/bin/poetry ]; then
+  curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | python -
+fi
 

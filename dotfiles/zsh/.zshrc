@@ -77,7 +77,7 @@ if which docker > /dev/null; then
       -e DISABLE_AUTH=true -e RENV_PATHS_ROOT=/renv \
       -p 8787:8787 \
       -v $HOME/.renv:/renv -v $(pwd):/home/rstudio/project \
-      rocker/rstudio:4.0.0'
+      rocker/rstudio:3.6.3'
   alias tmp='pwd'
 fi
 alias yyyymmdd='date "+%Y%m%d"'
@@ -94,6 +94,7 @@ export PATH=$PATH:$HOME/n/bin
 
 # pyenv
 eval "$(pyenv init -)"
+export PATH=$PATH:$HOME/.local/bin
 
 
 #-----------------------------

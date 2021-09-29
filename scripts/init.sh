@@ -10,6 +10,9 @@ WINUSER=$(powershell.exe '$env:UserName' | tr -d '')
 sudo apt update
 sudo apt install bat
 
+ln -s /mnt/c/Users/$WINUSER/Desktop $HOME/desktop
+ln -s /mnt/c/Users/$WINUSER/Downloads $HOME/downloads
+
 #------------------------------
 # zsh
 #------------------------------

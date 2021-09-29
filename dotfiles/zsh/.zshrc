@@ -66,7 +66,7 @@ else
 fi
 if which docker > /dev/null; then
   alias dca='docker container attach'
-  alias dce='docker container exec'
+  alias dce='docker container exec -it'
   alias dcl='docker container ls'
   alias dcr='docker container run -it --rm'
   alias dib='docker image build'
@@ -76,7 +76,7 @@ if which docker > /dev/null; then
     docker container run \
       -e DISABLE_AUTH=true -e RENV_PATHS_ROOT=/renv \
       -p 8787:8787 \
-      -v $HOME/.renv:/renv -v $(pwd):/home/rstudio/project \
+      -v $HOME/.renv:/home/rstudio/.local/share/renv -v $(pwd):/home/rstudio/project \
       rocker/rstudio:3.6.3'
   alias tmp='pwd'
 fi

@@ -47,8 +47,6 @@ colorscheme molokai
 highlight Comment ctermfg=34
 
 "===== prettier =====
-"autocmd Filetype rust nnoremap <buffer> <leader>p :%!rustfmt<cr>
-autocmd Filetype rust nnoremap <buffer> <leader>p :RustFmt<cr>
 function MyPrettier()
     let l:current_line = line(".")
     return "o\<esc>dd:%!npx prettier --stdin-filepath %" . l:current_line . "G"

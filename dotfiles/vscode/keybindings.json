@@ -1,0 +1,25 @@
+[
+    {"key": "Ctrl+H", "command": "cursorLeft"},
+    {"key": "Ctrl+J", "command": "cursorDown"},
+    {"key": "Ctrl+K", "command": "cursorUp"},
+    {"key": "Ctrl+L", "command": "cursorRight"},
+    {"key": "Ctrl+B", "command": "cursorWordLeft"},
+    {
+        "key": "Ctrl+E",
+        "command": "cursorWordEndRight"
+    },
+    {
+        "key": "Ctrl+W",
+        "command": "cursorWordStartRight"
+    },
+    {
+        "key": "ctrl+K",
+        "command": "selectPrevSuggestion",
+        "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+    },
+    {
+        "key": "ctrl+J",
+        "command": "selectNextSuggestion",
+        "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+    }
+]

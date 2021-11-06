@@ -10,7 +10,7 @@ Plug 'preservim/nerdtree'
 Plug 'prettier/vim-prettier', {'do': 'yarn install --frozen-lockfile'}
 Plug 'tomasr/molokai'
 Plug 'yggdroot/indentLine'
-Plug 'airblade/vim-gitgutter'
+"Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 "python
 Plug 'fannheyward/coc-pyright', {'do': 'yarn install --frozen-lockfile'}
@@ -109,6 +109,7 @@ nnoremap <leader>s :CocCommand snippets.openSnippetFiles<cr>
 "mapping <cr> to <c-y> is recommended, but i don't like it
 "inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 nnoremap <silent> K :call <SID>show_documentation()<CR>
+inoremap <silent><expr> <c-space> coc#refresh()
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')

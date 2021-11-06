@@ -71,14 +71,23 @@ if which docker > /dev/null; then
   alias dcr='docker container run -it --rm'
   alias dib='docker image build'
   alias dil='docker image ls'
-  alias rstudio='\
-    mkdir -p $HOME/.renv; \
+  alias rstudio3='\
     docker container run \
-      -e DISABLE_AUTH=true -e RENV_PATHS_ROOT=/renv \
+      --rm \
+      -e DISABLE_AUTH=true \
       -p 8787:8787 \
-      -v $HOME/.renv:/home/rstudio/.local/share/renv -v $(pwd):/home/rstudio/project \
+      -v $HOME/.renv:/home/rstudio/.local/share/renv \
+      -v $(pwd):/home/rstudio/project \
       rocker/rstudio:3.6.3'
-  alias tmp='pwd'
+  alias rstudio4='\
+    docker container run \
+      --rm \
+      -e DISABLE_AUTH=true \
+      -e RENV_PATHS_CACHE=/renv \
+      -p 8787:8787 \
+      -v $HOME/.renv:/renv \
+      -v $(pwd):/home/rstudio/project \
+      rocker/rstudio:4.0.0'
 fi
 alias yyyymmdd='date "+%Y%m%d"'
 
@@ -87,6 +96,10 @@ alias yyyymmdd='date "+%Y%m%d"'
 #-----------------------------
 
 export PATH=$PATH:$HOME/n/bin
+export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+
+# yarn
+export PATH=$PATH:$HOME/.yarn/bin
 
 #-----------------------------
 # python
@@ -115,7 +128,3 @@ function setWinUser() {
   export WINUSER=$(powershell.exe '$env:UserName' | tr -d "")
 }
 
-#-----------------------------
-# nodejs
-#-----------------------------
-export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).

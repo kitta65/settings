@@ -1,7 +1,7 @@
-# 概要
+## 概要
 オレオレ環境構築スクリプト。いったんWSL2（Ubuntu-20.04）を想定。
 
-# 準備
+## 準備
 ## リポジトリのclone
 sshの設定はまだの前提なので、httpでcloneする。
 ```
@@ -13,29 +13,35 @@ git clone https://github.com/dr666m1/setting.git ~/.setting
 git remote set-url origin git@github.com:dr666m1/setting.git
 ```
 
-# 実行
-## 実行方法
+## 実行
+### 実行方法
 ログを記録したい場合は以下のように実行
 ```
 ./scripts/init.sh 2>&1 | tee ./init.log
 ```
 
-## 設定事項
-- curl, zip, exaなど基本的なコマンド群のインストール
-- mecabのインストール
-- fishの設定（functionsなど）
-- wsl2の設定
-- sshの設定（鍵の作成など）
-- gitの設定
-- nodejsのインストール
-- claspのインストール（利用前に[APIの有効化](https://script.google.com/home/usersettings)が必要）
-- neovimのインストール
-- pyenvのインストール
-- rustのインストール
-- goのインストール
-- google-cloud-sdkのインストール
+### 設定事項
+* 基本的なコマンドのインストール
+  * bat
+  * [exa](https://github.com/ogham/exa)
+* Python
+  * [Poetry](https://github.com/python-poetry/poetry)のインストール
+* Node.js
+  * nを使ってインストール
+  * グローバルで使うパッケージのインストール
+    * yarn
+    * serve
+* デスクトップ・ダウンロードフォルダへのリンク作成
+* zsh
+  * インストール
+  * デフォルトシェルに設定
+  * `.zshrc` `.zprofile`をリンク
+  * プラグインのインスト―ル
+    * zsh-autosuggestions
+    * pure
+* wslの設定
 
-## 追加対応
+## 事後対応
 `init.sh`の実行後に、シェルを再起動し以下の対応をする。
 
 ### pyenv

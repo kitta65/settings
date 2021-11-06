@@ -10,7 +10,7 @@ Plug 'preservim/nerdtree'
 Plug 'prettier/vim-prettier', {'do': 'yarn install --frozen-lockfile'}
 Plug 'tomasr/molokai'
 Plug 'yggdroot/indentLine'
-"Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 "python
 Plug 'fannheyward/coc-pyright', {'do': 'yarn install --frozen-lockfile'}
@@ -19,8 +19,6 @@ Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/vim-jsx-improve'
-"rust
-Plug 'neoclide/coc-rls', {'do': 'yarn install --frozen-lockfile'}
 "other
 Plug 'aliva/vim-fish'
 call plug#end()

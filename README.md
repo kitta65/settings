@@ -1,5 +1,5 @@
 # 概要
-オレオレ環境構築スクリプト。いったんWSL2（Ubuntu-18.04・Ubuntu-20.04・Debian）を想定。
+オレオレ環境構築スクリプト。いったんWSL2（Ubuntu-20.04）を想定。
 
 # 準備
 ## リポジトリのclone
@@ -13,23 +13,11 @@ git clone https://github.com/dr666m1/setting.git ~/.setting
 git remote set-url origin git@github.com:dr666m1/setting.git
 ```
 
-## fishのインストール
-スクリプトはfish用に記載しているため、以下のスクリプト('scripts/fish.sh')でにインストール。完了したらシェルを再起動。
-```
-# install fish
-sudo apt-add-repository ppa:fish-shell/release-3
-sudo apt-get update
-sudo apt-get -y install fish
-
-# change default shell
-chsh -s $(which fish)
-```
-
 # 実行
 ## 実行方法
 ログを記録したい場合は以下のように実行
 ```
-./scripts/init.fish 2>&1 | tee ./stdout_and_stderr.log
+./scripts/init.sh 2>&1 | tee ./init.log
 ```
 
 ## 設定事項
@@ -48,16 +36,11 @@ chsh -s $(which fish)
 - google-cloud-sdkのインストール
 
 ## 追加対応
-`init.fish`の実行後に、シェルを再起動し以下の対応をする。
-
-### google-cloud-sdk
-```
-set -Ux GOOGLE_APPLICATION_CREDENTIALS $HOME/.gcp/xxxxxx.json
-```
+`init.sh`の実行後に、シェルを再起動し以下の対応をする。
 
 ### pyenv
 ```
-set -l ver "3.7.0"
+ver="3.7.0"
 pyenv install $ver
 pyenv global $ver
 ```
@@ -68,21 +51,10 @@ pip install pynvim
 ```
 初回はnvim内で`:PlugInstall!`を実行する必要がある。
 
-### omf
-omfやそのテーマを使いたければ、以下のように実行する。
-あくまでテーマの管理に利用する想定で、いまのところ`~/.config/omf/init.fish`を使うつもりはない。
-```
-curl -L https://get.oh-my.fish | fish
-omf install batman
-```
+coc.nvimのプラグインは必要に応じて`:CocInstall xxx`でインストール。
+以下はお気に入り（なるべく`init.vim`に記載するようにしているので、うまくいかなかったもののみ）。
 
-### ngrok
-認証を完了するため、
-[ここ](https://dashboard.ngrok.com/auth/your-authtoken)でトークンを確認し以下を実行
-
-```
-ngrok authtoken xxxxxxxxxx
-```
+* [coc-rls](https://github.com/neoclide/coc-rls)
 
 ### docker
 [Docker Desktop WSL2 backend](https://docs.docker.com/docker-for-windows/wsl/)を利用可能にしておくとよい。

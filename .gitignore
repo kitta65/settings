@@ -1,4 +1,3 @@
 *local*
-.netrwhist
 fish_prompt.fish
-log/
+*.log

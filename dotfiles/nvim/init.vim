@@ -52,6 +52,9 @@ endfunction
 "PrettierAsync may be better but cannot be used with vim-bookmarks
 nnoremap <expr><leader>p MyPrettier()
 
+autocmd Filetype bq,sql nnoremap<buffer> <leader>p :call CocAction('format')<cr>
+command -nargs=0 UpdateCache call CocRequestAsync("bigquery", "bq/updateCache")
+
 "===== indentLine =====
 autocmd Filetype markdown,json,tex IndentLinesDisable
 autocmd Filetype markdown,json,tex set conceallevel=0

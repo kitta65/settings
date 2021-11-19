@@ -14,7 +14,7 @@
         "bqExtensionVSCode": {
           "diagnostic": {
             "forVSCode": false,
-            "dryRunOnSave": false
+            "dryRunOnSave": true
           }
         }
       }

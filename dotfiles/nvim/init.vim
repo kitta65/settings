@@ -214,10 +214,18 @@ noremap! ｊｊ <esc>
 set number
 set list
 set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
-vnoremap i <s-i>
-vnoremap a <s-a>
-vnoremap v <esc>
-"nnoremap <c-l> <c-w>l
+" This function should be used in visual mode
+function InVisualBlockMode()
+    let l:mode = mode()
+    if mode == ""
+        return "1"
+    else
+        return "0"
+    endif
+endfunction
+
+vnoremap <expr>i InVisualBlockMode() ? "\<s-i>" : "i"
+vnoremap <expr>a InVisualBlockMode() ? "\<s-a>" : "a"
 nnoremap <c-l> <c-w>w
 nnoremap <c-h> <c-w>h
 
@@ -226,3 +234,4 @@ nnoremap <c-h> <c-w>h
 
 "===== local_setting =====
 runtime ./init_local.vim
+

@@ -25,6 +25,7 @@ call plug#end()
 
 "===== common =====
 let mapleader = "\<space>"
+set timeoutlen=500
 syntax on
 autocmd Filetype rust,javascriptreact,bq,sql syntax sync minlines=10000
 filetype plugin indent on
@@ -223,9 +224,10 @@ function InVisualBlockMode()
         return "0"
     endif
 endfunction
-
 vnoremap <expr>i InVisualBlockMode() ? "\<s-i>" : "i"
 vnoremap <expr>a InVisualBlockMode() ? "\<s-a>" : "a"
+" useful to exit from visual block mode.
+vnoremap v <esc>
 nnoremap <c-l> <c-w>w
 nnoremap <c-h> <c-w>h
 
@@ -234,4 +236,3 @@ nnoremap <c-h> <c-w>h
 
 "===== local_setting =====
 runtime ./init_local.vim
-

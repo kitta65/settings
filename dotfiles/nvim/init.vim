@@ -36,7 +36,7 @@ let g:python3_host_prog = '$HOME/.pyenv/shims/python'
 nnoremap <leader>f :NERDTreeFocus<cr>
 let NERDTreeCustomOpenArgs = {'file': {'reuse': 'all', 'where': 't'}, 'dir': {}}
 let NERDTreeQuitOnOpen = 1
-let NERDTreeShowHidden=1
+let NERDTreeShowHidden = 1
 
 "===== bookmarks =====
 let g:bookmark_auto_save = 0
@@ -54,7 +54,7 @@ endfunction
 nnoremap <expr><leader>p MyPrettier()
 
 autocmd Filetype bq,sql nnoremap<buffer> <leader>p :call CocAction('format')<cr>
-command -nargs=0 UpdateCache call CocRequestAsync("bigquery", "bq/updateCache")
+command! -nargs=0 UpdateCache call CocRequestAsync("bigquery", "bq/updateCache")
 
 "===== indentLine =====
 autocmd Filetype markdown,json,tex IndentLinesDisable
@@ -152,7 +152,7 @@ function My0()
     let l:myzero_next_col = strchars(matchstr(getline("."), "^\\s*"))+1
     let l:myzero_current_col = col(".")
     if 1 < l:myzero_next_col && l:myzero_next_col < l:myzero_current_col
-        return "0w"
+        return "^"
     else
         return "0"
         "!... ignore mapping
@@ -162,9 +162,15 @@ nnoremap <expr>0 My0()
 vnoremap <expr>0 My0()
 
 "===== tab =====
-nnoremap <leader>n :tabnew<cr>
-nnoremap <c-]> gt
-nnoremap <c-[> gT
+nnoremap <leader>n :tabe<cr>
+nnoremap <c-]> :tabn<cr>
+nnoremap <c-[> :tabp<cr>
+
+"===== window =====
+nnoremap <c-h> <c-w>h
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
 
 "===== quote & bracket =====
 inoremap ( )<left>(
@@ -185,7 +191,7 @@ inoremap <= <=
 inoremap {<cr> {}<left><cr><esc><s-o>
 inoremap (<cr> ()<left><cr><esc><s-o>
 inoremap [<cr> []<left><cr><esc><s-o>
-command -nargs=* MyQuote call MyQuote(<f-args>)
+command! -nargs=* MyQuote call MyQuote(<f-args>)
 function MyQuote(l, ...)
     let l:r = get(a:000, 0, a:l)
     execute "normal! `>"
@@ -209,12 +215,17 @@ autocmd InsertLeave * set nopaste
 vnoremap y y`>
 
 "===== other =====
+cabbrev vrc $MYVIMRC
+inoremap <c-u> <esc>viw<s-u>ea
+nnoremap <leader><cr> <c-]>
+
 nnoremap / /\v
 noremap! jj <esc>
 noremap! ｊｊ <esc>
 set number
 set list
-set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
+set listchars=tab:»\ ,trail:•,eol:↲,extends:»,precedes:«,nbsp:%
+
 " This function should be used in visual mode
 function InVisualBlockMode()
     let l:mode = mode()
